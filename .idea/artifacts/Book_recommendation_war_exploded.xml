@@ -9,6 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Struts 2-2.5.14.1" />
+          <element id="library" level="project" name="javassist-3.15.0-GA" />
         </element>
       </element>
     </root>
