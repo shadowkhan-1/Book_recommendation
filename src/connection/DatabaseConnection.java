@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
         private static final String driver = "com.mysql.jdbc.Driver";
-        private static final String url = "jdbc:mysql://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=true&";
+        private static final String url = "jdbc:mysql://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=false&";
         private static final String user="linwei";
-        private static final String password ="123456";
+//        private static final String password ="123456";
+        private static final String password="Mysql#2018";
         private Connection conn=null;
         //构造方法连接数据库
         public DatabaseConnection(){

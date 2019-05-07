@@ -25,7 +25,7 @@
         }
     </script>
 </head>
-<form action="" method="post">
+<form action="register">
     <div class="container">
         <div class="form row">
             <div class="form-horizontal col-md-offset-3" id="login_form">
@@ -48,9 +48,9 @@
 <%--                            <input type="checkbox" name="remember" value="1"/>记住我 </label>--%>
 <%--                    </div>--%>
                     <div class="form-group col-md-offset-9">
-<%--                        <button type="submit" class="btn btn-success pull-left" name="submit">登录</button>--%>
+                        <button type="submit" class="btn btn-success pull-right" name="submit">注册</button>
                         <%--                    <button type="button" class="btn btn-success pull-right" name="registered">注册</button>--%>
-                        <a class="btn btn-success pull-right" href="newuser.jsp">注册</a>
+<%--                        <a class="btn btn-success pull-right" href="newuser.jsp">注册</a>--%>
                     </div>
                 </div>
             </div>
