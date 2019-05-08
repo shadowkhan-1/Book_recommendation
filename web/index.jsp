@@ -16,8 +16,8 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<form action="" method="post">
-<div class="container">
+    <form action="loading">
+    <div class="container">
     <div class="form row">
         <div class="form-horizontal col-md-offset-3" id="login_form">
             <h3 class="form-title">LOGIN</h3>

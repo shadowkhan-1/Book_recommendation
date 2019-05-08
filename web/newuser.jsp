@@ -36,6 +36,10 @@
                         <input class="form-control required" type="text" placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="20"/>
                     </div>
                     <div class="form-group">
+                        <i class="fa fa-user fa-lg"></i>
+                        <input class="form-control required" type="text" placeholder="Name" id="name" name="name" autofocus="autofocus" maxlength="20"/>
+                    </div>
+                    <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
                     <input class="form-control required" type="password" placeholder="Password" id="newpassword1" name="newpassword1" maxlength="8"/>
                     </div>
