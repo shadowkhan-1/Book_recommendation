@@ -1,5 +1,6 @@
 package action;
 
+import MD5.MD5Util;
 import com.opensymphony.xwork2.ActionSupport;
 import connection.DatabaseConnection;
 import org.apache.struts2.ServletActionContext;
@@ -22,7 +23,7 @@ public class loading extends ActionSupport {
             pts.setString(1,username);
             ResultSet result = pts.executeQuery();
             if(result.next()){
-                if(result.getString(1).equals(password)){
+                if(result.getString(1).equals(MD5Util.md5Encode(password))){
                     return "login";
                 }
                 else {

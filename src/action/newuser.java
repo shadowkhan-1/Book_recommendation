@@ -1,4 +1,5 @@
 package action;
+import MD5.MD5Util;
 import com.opensymphony.xwork2.ActionSupport;
 import connection.DatabaseConnection;
 import org.apache.struts2.ServletActionContext;
@@ -18,7 +19,7 @@ public class newuser extends ActionSupport{
             PreparedStatement pts = conn.getConnection().prepareStatement(sql);
             pts.setString(1,username);
             pts.setString(2,name);
-            pts.setString(3,password);
+            pts.setString(3, MD5Util.md5Encode(password));
             if(pts.executeUpdate()>=1){
                 return "success";
             }
