@@ -9,5 +9,7 @@ public class test {
         Connection connection = conn.getConnection();
         System.out.println(connection);//*/
         System.out.println(MD5Util.md5Encode("123456"));
+        String passoword = MD5Util.md5Encode("123456");
+        System.out.println(MD5Util.md5Encode(passoword));
     }
 }

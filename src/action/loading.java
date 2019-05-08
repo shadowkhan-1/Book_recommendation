@@ -1,9 +1,11 @@
 package action;
 
+import Factory.ServiceFactory;
 import MD5.MD5Util;
 import com.opensymphony.xwork2.ActionSupport;
 import connection.DatabaseConnection;
 import org.apache.struts2.ServletActionContext;
+import table.user;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
@@ -16,27 +18,11 @@ public class loading extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        DatabaseConnection conn = new DatabaseConnection();
-        String sql = "select password from user where username like ?";
-        try{
-            PreparedStatement pts = conn.getConnection().prepareStatement(sql);
-            pts.setString(1,username);
-            ResultSet result = pts.executeQuery();
-            if(result.next()){
-                if(result.getString(1).equals(MD5Util.md5Encode(password))){
-                    return "login";
-                }
-                else {
-                    return "error";
-                }
-            }
+        user vo = new user();
+        vo = ServiceFactory.getUserServiceInterface().find(username);
+        if(MD5Util.md5Encode(password).equals(vo.getPassword())){
+            return "login";
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        finally {
-            conn.colse();
-        }
-        return "error";
+        else return "error";
     }
 }
