@@ -15,7 +15,7 @@ public class UserIDAOImp implements IUserDAO {
         this.conn = conn;
     }
     public boolean Create(user vo) throws Exception {
-        String sql = "insert into user(username,name,password) valuse(?,?,?)";
+        String sql = "insert into user(username,name,password) values(?,?,?)";
         pts = conn.prepareStatement(sql);
         pts.setString(1,vo.getUsername());
         pts.setString(2,vo.getName());
@@ -26,6 +26,7 @@ public class UserIDAOImp implements IUserDAO {
     public user Find(String username) throws Exception {
         String sql = "select username,name,password from user where username like ?";
         pts = conn.prepareStatement(sql);
+        pts.setString(1,username);
         user vo = new user();
         ResultSet rs = pts.executeQuery();
         if(rs.next()){
