@@ -1,6 +1,5 @@
 import MD5.MD5Util;
 import connection.DatabaseConnection;
-
 import java.sql.Connection;
 
 public class test {
