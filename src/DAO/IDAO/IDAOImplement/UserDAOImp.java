@@ -8,10 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-public class UserIDAOImp implements IUserDAO {
+public class UserDAOImp implements IUserDAO {
     private Connection conn;
     private PreparedStatement pts;
-    public UserIDAOImp(Connection conn){
+    public UserDAOImp(Connection conn){
         this.conn = conn;
     }
     public boolean Create(user vo) throws Exception {

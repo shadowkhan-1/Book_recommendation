@@ -11,8 +11,11 @@
             <result name="error">/error.jsp</result>
         </action>
         <action name="loading" class="action.loading" method="execute">
-            <result name="login">/success.jsp</result>
+            <result name="login" type="redirect">getbook.action</result>
             <result name="error">/error.jsp</result>
+        </action>
+        <action name="getbook" class="action.getbook" method="execute">
+            <result name="success">/books.jsp</result>
         </action>
     </package>
 </struts>
