@@ -21,7 +21,6 @@ public class getbook extends ActionSupport {
         if(_pages!=null){
             pages = Integer.parseInt(_pages);
         }
-        System.out.println(pages);
         list = ServiceFactory.getBX_BooksServiceInterface().findbypage(pages);
         Integer totalbook = ServiceFactory.getBX_BooksServiceInterface().findcount();
         pagebean.setList(list);

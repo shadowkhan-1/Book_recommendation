@@ -11,6 +11,7 @@
     <title>error</title>
 </head>
 <body>
-you are error!
 </body>
+<h5>用户名或者密码错误！</h5>
+<a href="index.jsp">返回</a>
 </html>

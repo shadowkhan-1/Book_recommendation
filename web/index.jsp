@@ -31,7 +31,8 @@
             </div>
                 <div class="form-group">
                     <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1"/>记住我 </label>
+                        <input type="checkbox" name="remember" value="1"/>记住我
+                        <a class="pull-right" href="#">忘记密码?</a></label>
                 </div>
                 <div class="form-group col-md-offset-9">
                     <button type="submit" class="btn btn-success pull-left" name="submit">登录</button>
