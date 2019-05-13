@@ -13,39 +13,7 @@
 <html>
 <head>
     <title>书籍</title>
-    <style type="text/css">
-           /*防止内容被挡*/
-        body {  padding-top: 70px; padding-bottom: 70px;}
-        /*强制不换行 */
-        .book_info{
-            display: inline-block;
-            white-space: nowrap;
-            width: 100%;             /*文本宽度*/
-            overflow: hidden;        /*超出部分隐藏*/
-            text-overflow:ellipsis;
-        }
-           .loginCenter {
-               line-height: 27px;
-               position: relative;
-               width: 50px;
-               height: 50px;
-               padding: 13px 25px 5px 25px;
-           }
-        .div_left{
-            width: 80%;
-            border: 0px;
-        }
-        .div_right{
-            width: auto;
-        }
-           .thumbnail{
-               cursor: pointer;
-               transition: all 0.6s;
-           }
-           .thumbnail:hover{
-               transform: scale(1.4);
-           }
-    </style>
+    <link rel="stylesheet" href="css/books.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -64,7 +32,7 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container">
+<div class="container-fiuled">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -154,18 +122,22 @@
         String big_image_href = books.getImage_URL_L();
     %>
 <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-        <div class="thumbnail">
-            <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width: 100px;height:100px"></a>
-            <div class="caption">
+    <div class="col-md-3 col-xs-3">
+<%--        <div class="thumbnail">--%>
+            <div class="thumbnail book_info_left">
+            <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width: 140px;height:160px"><span>8.4</span></a>
+
+            </div>
+                <div class="thumbnail book_info_right">
                 <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
                 <p style="color:#28ff46;">
                     <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=books.getBook_Author()%><br></a></span>
                     <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
                     出版日期:<%=books.getYear_Of_Publication()%>
                 </p>
+                    <a href=""><span class="glyphicon glyphicon-heart"></span></a>
             </div>
-        </div>
+<%--        </div>--%>
     </div>
     <%} %>
     </div>

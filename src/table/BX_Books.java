@@ -9,7 +9,7 @@ public class BX_Books {
     private String Image_URL_S;
     private String Image_URL_M;
     private String Image_URL_L;
-    public static final Integer Page_Size = 20;
+    public static final Integer Page_Size = 24;
 
     public String getISBN() {
         return this.ISBN;
