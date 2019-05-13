@@ -5,11 +5,20 @@ import table.BX_Books;
 import java.util.List;
 
 public class PageBean {
-    private Integer pagesize = 20;
+    private Integer pagesize = 24;
     private Integer totalbook;
     private Integer totalpages;
     private Integer pages;
     private List<BX_Books> list;
+    private Integer grade;
+
+    public Integer getGrade() {
+        return this.grade;
+    }
+
+    public void setGrade(final Integer grade) {
+        this.grade = grade;
+    }
 
     public Integer getTotalbook() {
         return this.totalbook;

@@ -122,10 +122,10 @@
         String big_image_href = books.getImage_URL_L();
     %>
 <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-    <div class="col-md-3 col-xs-3">
+    <div class="col-md-4 col-xs-3">
 <%--        <div class="thumbnail">--%>
             <div class="thumbnail book_info_left">
-            <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width: 140px;height:160px"><span>8.4</span></a>
+            <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width: 140px;height:160px"><span><%=books.getGrade()%></span></a>
 
             </div>
                 <div class="thumbnail book_info_right">
