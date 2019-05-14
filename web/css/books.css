@@ -40,20 +40,31 @@ body {  padding-top: 70px; padding-bottom: 70px;}
 .thumbnail.book_info_left{
     width: 40%;
     float: left;
-    border: 1px solid #28ff46;
+    border: 0px none;
 }
 .thumbnail.book_info_right{
-    width: 60%;
+    width:60%;
+    height: auto;
     float: left;
-    border:0px;
+    border:0px none;
 }
 .thumbnail.book_info_left a span{
     position: absolute;
     left: 20px;
-    /*下边距*/
-    bottom: 24px;
+    top: 5px;
+    font: 12px/18px Arial;
+    padding: 0 4px 0 2px;
+    height: 20px;
     background: #ed4259;
 }
+/*.book_grade{*/
+/*    position: absolute;*/
+/*    line-height: 18px;*/
+/*    left: 22px;*/
+/*    !*下边距*!*/
+/*    bottom: 24px;*/
+/*    background: #ed4259;*/
+/*}*/
 /*.class1.class2（中间没有空格）匹配的是同时拥有class1和class2的元素*/
 
 /*1 <div class="class1 class2">...</div>*/

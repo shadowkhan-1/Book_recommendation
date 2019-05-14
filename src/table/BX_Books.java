@@ -9,13 +9,13 @@ public class BX_Books {
     private String Image_URL_S;
     private String Image_URL_M;
     private String Image_URL_L;
-    private String Grade;
+    private Double Grade;
     public static final Integer Page_Size = 24;
-    public String getGrade() {
+    public Double getGrade() {
         return this.Grade;
     }
 
-    public void setGrade(final String grade) {
+    public void setGrade(final double grade) {
         this.Grade = grade;
     }
     public String getISBN() {
