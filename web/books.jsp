@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="table.BX_Books,java.util.List" %>
-<%@ page import="Factory.ServiceFactory" %>
 <%@ page import="javabean.PageBean" %>
 <%@ page import="javabean.UserBean" %>
 <html>
@@ -17,6 +16,28 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function sendFavorite(){
+            var yourfavorite = $("#favorite");
+            var username = youfavorite.attr("data-username");
+            var ISBN = yourfavorite.attr("data-ISBN");
+            // $.ajax({
+            //     type:"post",
+            //     url:favorite.active,
+            //     data:{"username":username,"ISBN":ISBN},
+            //     dataType:"String",
+            //     success:function (data) {
+            //         if(data=="success"){
+            //             $(".glyphicon-heart").color("#ed4259");
+            //         }
+            //         else {
+            //             alert("收藏失败！");
+            //         }
+            //     },
+            // });
+            alert(username+ISBN);
+        }
+    </script>
 <%--&lt;%&ndash;    <script>&ndash;%&gt;--%>
 <%--&lt;%&ndash;    function getPage() {&ndash;%&gt;--%>
 <%--        // var page = document.getElementById("pages").value;//js用var创建变量--%>
@@ -135,7 +156,7 @@
                     <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
                     出版日期:<%=books.getYear_Of_Publication()%>
                 </p>
-                    <a href=""><span class="glyphicon glyphicon-heart"></span></a>
+                   <a id="favorite" href="javascript:;" data-username=<%=userbean.getUsername()%> data-ISBN=<%=books.getISBN()%> onclick="sendFavorite()"> <span class="glyphicon glyphicon-heart"></span></a>
             </div>
 <%--        </div>--%>
     </div>

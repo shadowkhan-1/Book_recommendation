@@ -17,5 +17,8 @@
         <action name="getbook" class="action.getbook" method="execute">
             <result name="success">/books.jsp</result>
         </action>
+        <action name="favorite" class="action.favorite" method="execute">
+            <result name="success">books.jsp</result>
+        </action>
     </package>
 </struts>

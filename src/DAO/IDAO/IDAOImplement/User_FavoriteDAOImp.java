@@ -59,7 +59,7 @@ public class User_FavoriteDAOImp implements IUser_FavoriteDAO {
     }
 
     @Override
-    public boolean delete(Integer id) throws Exception {
+    public boolean Delete(Integer id) throws Exception {
         String sql = "delete from User_Favorite where id = ?";
         pts = conn.prepareStatement(sql);
         pts.setInt(1,id);
