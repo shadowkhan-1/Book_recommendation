@@ -18,24 +18,26 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function sendFavorite(){
-            var yourfavorite = $("#favorite");
-            var username = youfavorite.attr("data-username");
-            var ISBN = yourfavorite.attr("data-ISBN");
-            // $.ajax({
-            //     type:"post",
-            //     url:favorite.active,
-            //     data:{"username":username,"ISBN":ISBN},
-            //     dataType:"String",
-            //     success:function (data) {
-            //         if(data=="success"){
-            //             $(".glyphicon-heart").color("#ed4259");
-            //         }
-            //         else {
-            //             alert("收藏失败！");
-            //         }
-            //     },
-            // });
-            alert(username+ISBN);
+            var test = $('#favorite');
+            var UserName = test.attr('data-username');
+            var Book_ISBN = test.attr('data-ISBN');
+            alert(UserName+Book_ISBN);
+            $.ajax({
+                type:"execute",
+                url:"favorite.action",     //url要加""，注意了，注意了
+                data:{"username":UserName,"ISBN":Book_ISBN},
+                dataType:"String",
+                success:function (data) {
+                    if(data=="success"){
+                        $(".glyphicon-heart").click(function () {
+                            $(this).css("color","#ed4259");
+                            });                                            //点击变颜色$(class).click(fuction(){};)
+                    }
+                    else {
+                        alert("收藏失败！");
+                    }
+                },
+            });
         }
     </script>
 <%--&lt;%&ndash;    <script>&ndash;%&gt;--%>
@@ -156,7 +158,7 @@
                     <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
                     出版日期:<%=books.getYear_Of_Publication()%>
                 </p>
-                   <a id="favorite" href="javascript:;" data-username=<%=userbean.getUsername()%> data-ISBN=<%=books.getISBN()%> onclick="sendFavorite()"> <span class="glyphicon glyphicon-heart"></span></a>
+                   <a id="favorite" href="javascript:;" data-username=<%=userbean.getUsername()%> data-ISBN=<%=books.getISBN()%> onclick="sendFavorite()"><span class="glyphicon glyphicon-heart"></span></a>
             </div>
 <%--        </div>--%>
     </div>
