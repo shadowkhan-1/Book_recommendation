@@ -9,16 +9,26 @@ import table.User_Favorite;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.Map;
 
 public class favorite extends ActionSupport {
+    // 创建私有变量
+    private InputStream streamActionResult = null;
+    // struts.xml 定义返回
+    public InputStream getStreamActionResult()
+    {
+        return streamActionResult;
+    }
     public String execute() throws Exception{
+        streamActionResult = new ByteArrayInputStream("success".getBytes("UTF-8"));
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
         String data = request.getParameter("data");
         System.out.println(data);
-        response.getWriter().write("success");
-        return "success";
+        String strResult = "success";
+        return strResult;
 
 //            String username = request.getParameter("username");
 //            String ISBN = request.getParameter("ISBN");
