@@ -22,16 +22,21 @@
             var UserName = test.attr('data-username');
             var Book_ISBN = test.attr('data-ISBN');
             alert(UserName+Book_ISBN);
+            $(".glyphicon-heart").click(function () {
+                $(this).css("color","#ed4259");
+            })
             $.ajax({
-                type:"execute",
+                type:"post",                //切记要用post发送，没有execute()，在struts.xml中指定方法
                 url:"favorite.action",     //url要加""，注意了，注意了
-                data:{"username":UserName,"ISBN":Book_ISBN},
-                dataType:"String",
-                success:function (data) {
-                    if(data=="success"){
-                        $(".glyphicon-heart").click(function () {
-                            $(this).css("color","#ed4259");
-                            });                                            //点击变颜色$(class).click(fuction(){};)
+                data:{"username":UserName,"ISBN":Book_ISBN},          //action通过request.Parameter("username") 取值
+                dataType:"text",                                //类型：xml，html，script，json，jsonp，text
+                contenType:"application/json;charset=utf-8",
+                success:function (result) {
+                    if(result=="success"){
+                        // $(".glyphicon-heart").click(function () {
+                        //     $(this).css("color","#ed4259");
+                        //     });//点击变颜色$(class).click(fuction(){};)
+                        alert("收藏成功！");
                     }
                     else {
                         alert("收藏失败！");
