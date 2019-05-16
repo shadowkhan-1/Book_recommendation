@@ -70,10 +70,9 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 "Book_Author," +
                 "Year_Of_Publication," +
                 "Publisher,Image_URL_M,Image_URL_L,grade " +
-                "from BX_Books left join " +
-                "(select ISBN,avg(Book_Rating) as grade from BX_Book_Ratings group by ISBN order by grade desc) as t1 " +
-                "on t1.ISBN=BX_Books.ISBN " +
-                "limit ?,?";
+                "from BX_Books right join " +
+                "(select ISBN,avg(Book_Rating) as grade from BX_Book_Ratings group by ISBN order by grade desc limit ?,?) as t1 " +
+                "on t1.ISBN=BX_Books.ISBN";
         pts = conn.prepareStatement(sql);
         pts.setInt(1,(page-1)*BX_Books.Page_Size);
         pts.setInt(2,BX_Books.Page_Size);
