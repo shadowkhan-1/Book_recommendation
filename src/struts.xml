@@ -23,5 +23,8 @@
                 <param name="inputName">message</param>
             </result>
         </action>
+        <action name="getfavorite" class="action.getfavorite" method="execute">
+            <result name="success">/myfavorite.jsp</result>
+        </action>
     </package>
 </struts>

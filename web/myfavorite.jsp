@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: linwei
-  Date: 5/11/19
-  Time: 8:43 PM
+  User: Administrator
+  Date: 2019/5/17 0017
+  Time: 下午 20:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,7 +11,7 @@
 <%@ page import="javabean.UserBean" %>
 <html>
 <head>
-    <title>书籍</title>
+    <title>我的收藏</title>
     <link rel="stylesheet" href="css/books.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -37,7 +37,7 @@
                     if(result=="success"){
                         $(".glyphicon-heart").click(function () {
                             $(this).css("color","#ed4259");
-                            });//点击变颜色$(class).click(fuction(){};)
+                        });//点击变颜色$(class).click(fuction(){};)
                         alert("收藏成功！");
                     }
                     else if(result == "already"){
@@ -53,16 +53,6 @@
             });
         }
     </script>
-<%--&lt;%&ndash;    <script>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    function getPage() {&ndash;%&gt;--%>
-<%--        // var page = document.getElementById("pages").value;//js用var创建变量--%>
-<%--        // document.forms.selectbook.action="getbook?"+page.value;//直接获取表单的action;--%>
-<%--        // document.getElementById('selectbook').action="getbook?pages="+page;另一种写法--%>
-<%--        // document.getElementById('selectbook').submit();另一种写法--%>
-<%--        // alert(document.getElementById("selectbook").action);--%>
-<%--        //document.forms.selectbook.submit();--%>
-<%--    }--%>
-<%--&lt;%&ndash; </script>  &ndash;%&gt;--%>
 </head>
 <body>
 <%
@@ -116,7 +106,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <div class="loginCenter"><img src="img/kula.png"></div>
+                            <div class="loginCenter"><img src="img/kula.png"></div>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=userbean.getUsername()%><strong class="caret"></strong></a>
@@ -148,49 +138,48 @@
         Integer pages = pagebean.getPages();
         Integer totalpages = pagebean.getTotalpages();
     %>
-    <div class="div_left">
-    <div class="row">
-    <%
-    List<BX_Books> list=pagebean.getList();
-    for(BX_Books books:list){
-        String author_href = "https://www.baidu.com/s?wd="+books.getBook_Author().replace(" ","+")+"&ie=UTF-8";
-        String title_href = "https://www.baidu.com/s?wd="+books.getBook_Title().replace(" ","+")+"&ie=UTF-8";
-        String big_image_href = books.getImage_URL_L();
-    %>
-<%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-    <div class="col-md-3 col-xs-3">
-<%--        <div class="thumbnail">--%>
-            <div class="thumbnail book_info_left">
-            <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
+        <div class="row">
+            <%
+                List<BX_Books> list=pagebean.getList();
+                for(BX_Books books:list){
+                    String author_href = "https://www.baidu.com/s?wd="+books.getBook_Author().replace(" ","+")+"&ie=UTF-8";
+                    String title_href = "https://www.baidu.com/s?wd="+books.getBook_Title().replace(" ","+")+"&ie=UTF-8";
+                    String big_image_href = books.getImage_URL_L();
+            %>
+            <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
+            <div class="col-md-3 col-xs-3">
+                <%--        <div class="thumbnail">--%>
+                <div class="thumbnail book_info_left">
+                    <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
 
-            </div>
+                </div>
                 <div class="thumbnail book_info_right">
-                <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
-                <p style="color:#28ff46;">
-                    <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=books.getBook_Author()%><br></a></span>
-                    <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
-                    出版日期:<%=books.getYear_Of_Publication()%>
-                </p>
-                   <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite(<%=books.getISBN()%>)"><span class="glyphicon glyphicon-heart"></span></a>
+                    <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
+                    <p style="color:#28ff46;">
+                        <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=books.getBook_Author()%><br></a></span>
+                        <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
+                        出版日期:<%=books.getYear_Of_Publication()%>
+                    </p>
+                    <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite(<%=books.getISBN()%>)"><span class="glyphicon glyphicon-heart"></span></a>
+                </div>
+                <%--        </div>--%>
             </div>
-<%--        </div>--%>
-    </div>
-    <%} %>
-    </div>
-    </div>
-    <div class="div_right"></div>
-<form action="getbook.action">
-    <nav style="text-align: center">
-    <ul class="pagination">
-        <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
-        <li><a href="getbook?pages=1">首页</a></li>
-        <li><a href="getbook?pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
-        <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
-        <li><a href="getbook?pages=<%=totalpages%>">最后一页</a></li>
-        <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" value="跳转" name="submit"></li>
-    </ul>
-    </nav>
-</form>
+            <%} %>
+        </div>
+
+    <form action="getfavorite?username=<%=userbean.getUsername()%>">
+        <nav style="text-align: center">
+            <ul class="pagination">
+                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
+                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=1">首页</a></li>
+                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
+                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
+                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=totalpages%>">最后一页</a></li>
+                <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" value="跳转" name="submit"></li>
+            </ul>
+        </nav>
+    </form>
 </div>
 </body>
 </html>
+

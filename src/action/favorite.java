@@ -22,10 +22,10 @@ public class favorite extends ActionSupport {
 //    {
 //        return streamActionResult;
 //    }
-     private String username;               //struts用属性驱动来获取数据
-     private String ISBN;
-     private InputStream message;                               //inputName的名称
-     public InputStream getMessage(){return  message;}
+    private String username;               //struts用属性驱动来获取数据
+    private String ISBN;
+    private InputStream message;                               //inputName的名称
+    public InputStream getMessage(){return  message;}
 
     public String getUsername() {
         return this.username;
@@ -47,15 +47,21 @@ public class favorite extends ActionSupport {
             vo.setUsername(username);
             vo.setISBN(ISBN);
             StringBuffer themessage;
-            if(ServiceFactory.getUser_FavoriteInterface().insert(vo)){
-                themessage = new StringBuffer("success");
+            if(ServiceFactory.getUser_FavoriteInterface().findexist(vo)){
+                themessage = new StringBuffer("already");
                 this.message = new ByteArrayInputStream(themessage.toString().getBytes("utf-8"));
                 return "success";
             }
             else {
-                themessage = new StringBuffer("error");
-                this.message = new ByteArrayInputStream(themessage.toString().getBytes("utf-8"));
-                return  "error";
+                if (ServiceFactory.getUser_FavoriteInterface().insert(vo)) {
+                    themessage = new StringBuffer("success");
+                    this.message = new ByteArrayInputStream(themessage.toString().getBytes("utf-8"));
+                    return "success";
+                } else {
+                    themessage = new StringBuffer("error");
+                    this.message = new ByteArrayInputStream(themessage.toString().getBytes("utf-8"));
+                    return "error";
+                }
             }
     }
 }
