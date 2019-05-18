@@ -3,6 +3,7 @@ package Service.IService.IServiceImplement;
 import Factory.DAOFactory;
 import Service.IService.IUser_FavoriteService;
 import connection.DatabaseConnection;
+import table.BX_Books;
 import table.User_Favorite;
 
 import java.sql.PreparedStatement;
@@ -37,9 +38,22 @@ public class User_FavoriteServiceImp implements IUser_FavoriteService {
     }
 
     @Override
-    public List<User_Favorite> findbypage(String username, Integer pages) throws Exception {
+    public List<BX_Books> findbypage(String username, Integer pages) throws Exception {
         try{
             return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindByPage(username,pages);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
+    public Integer findcount() throws Exception {
+        try {
+            return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindCount();
         }
         catch (Exception e){
             throw e;

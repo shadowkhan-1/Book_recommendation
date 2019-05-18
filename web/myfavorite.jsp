@@ -115,7 +115,7 @@
                                     <a href="#">个人资料</a>
                                 </li>
                                 <li>
-                                    <a href="#">我的收藏</a>
+                                    <a href="getfavorite.action?pages=1&username=<%=userbean.getUsername()%>">我的收藏</a>
                                 </li>
                                 <li>
                                     <a href="#">密码修改</a>
