@@ -98,7 +98,7 @@ public class User_FavoriteDAOImp implements IUser_FavoriteDAO {
         pts.setInt(3,BX_Books.Page_Size);
         ResultSet rs = pts.executeQuery();
         List<BX_Books> all = new ArrayList<BX_Books>();
-        if(rs.next()){
+        while(rs.next()){
             BX_Books vo = new BX_Books();
             vo.setISBN(rs.getString(1));
             vo.setBook_Title(rs.getString(2));
