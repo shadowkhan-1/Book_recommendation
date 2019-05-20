@@ -58,7 +58,7 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container">
+<div class="container-fiuled">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -147,7 +147,7 @@
                     String big_image_href = books.getImage_URL_L();
             %>
             <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-            <div class="col-md-4 col-xs-3">
+            <div class="col-md-3 col-xs-3">
                 <%--        <div class="thumbnail">--%>
                 <div class="thumbnail book_info_left">
                     <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
@@ -170,7 +170,7 @@
     <form action="getfavorite?username=<%=userbean.getUsername()%>">
         <nav style="text-align: center">
             <ul class="pagination">
-                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=(totalpages==0)?1:totalpages%>页 </a></li>
+                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=1">首页</a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>

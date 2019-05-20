@@ -68,12 +68,12 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container-fiuled">          <!--container-fiuled是左右两边不分开的-->
+<div class="container-fiuled">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="getbook.action">首页</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">首页</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -171,7 +171,7 @@
                     <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
                     出版日期:<%=books.getYear_Of_Publication()%>
                 </p>
-                   <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite('<%=books.getISBN()%>')"><span class="glyphicon glyphicon-heart"></span></a>       <!--数字型字符串加''防止把前面的0的去掉-->
+                   <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite(<%=books.getISBN()%>)"><span class="glyphicon glyphicon-heart"></span></a>
             </div>
 <%--        </div>--%>
     </div>
