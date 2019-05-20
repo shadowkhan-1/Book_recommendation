@@ -68,7 +68,7 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container-fiuled">
+<div class="container-fiuled">    <!--去除两边的空格-->
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">

@@ -33,15 +33,11 @@ public class getfavorite extends ActionSupport {
     public String execute() throws Exception{
         PageBean pagebean = new PageBean();
         ActionContext context = ActionContext.getContext();
-        System.out.println(this.pages);
-        System.out.println(this.username);
         pagebean.setList(ServiceFactory.getUser_FavoriteInterface().findbypage(this.username,this.pages));
         Integer totalbook = ServiceFactory.getUser_FavoriteInterface().findcount();
+        pagebean.setPages(this.pages);
         pagebean.setTotalbook(totalbook);
         pagebean.setTotalpages(totalbook/pagebean.getPagesize());
-        System.out.println(this.pages);
-        pagebean.setPages(this.pages);
-        System.out.println(pagebean.getTotalbook());
         context.put("pagebean",pagebean);
         return "success";
     }

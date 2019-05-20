@@ -58,7 +58,7 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container-fiuled">
+<div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -147,11 +147,10 @@
                     String big_image_href = books.getImage_URL_L();
             %>
             <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-            <div class="col-md-3 col-xs-3">
+            <div class="col-md-4 col-xs-3">
                 <%--        <div class="thumbnail">--%>
                 <div class="thumbnail book_info_left">
-                    <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
-
+                    <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span>无</span></a>
                 </div>
                 <div class="thumbnail book_info_right">
                     <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
@@ -160,7 +159,7 @@
                         <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
                         出版日期:<%=books.getYear_Of_Publication()%>
                     </p>
-                    <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite(<%=books.getISBN()%>)"><span class="glyphicon glyphicon-heart"></span></a>
+                    <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite('<%=books.getISBN()%>')"><span class="glyphicon glyphicon-heart"></span></a>  <!--用''来防止去除数据型字符型前面的0-->
                 </div>
                 <%--        </div>--%>
             </div>
@@ -170,11 +169,11 @@
     <form action="getfavorite?username=<%=userbean.getUsername()%>">
         <nav style="text-align: center">
             <ul class="pagination">
-                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
+                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=(totalpages==0)?1:totalpages%>页 </a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=1">首页</a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
                 <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
-                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=totalpages%>">最后一页</a></li>
+                <li><a href="getfavorite?username=<%=userbean.getUsername()%>&pages=<%=(totalpages==0)?1:totalpages%>">最后一页</a></li>
                 <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" value="跳转" name="submit"></li>
             </ul>
         </nav>
