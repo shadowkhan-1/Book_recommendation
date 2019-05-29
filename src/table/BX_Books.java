@@ -10,6 +10,16 @@ public class BX_Books {
     private String Image_URL_M;
     private String Image_URL_L;
     private Double Grade;
+    private Integer Book_Count;
+
+    public Integer getBook_Count() {
+        return this.Book_Count;
+    }
+
+    public void setBook_Count(final Integer book_Count) {
+        this.Book_Count = book_Count;
+    }
+
     public static final Integer Page_Size = 24;
     public Double getGrade() {
         return this.Grade;

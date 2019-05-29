@@ -20,6 +20,6 @@ object test {
       val file  = sc.textFile("./input/BX-Book-Ratings.csv")
       val header = file.first()
       val rating = file.filter(row=>row != header).map{x=>val line = x.split(";");(line(0),line(1),line(2))}
-      rating.take(10).foreach(x=>println(x._1,x._2,x._3))
+      rating.take(10).foreach(x=>println(x._1,x._2.replaceAll("\"","").hashCode(),x._3))
   }
 }

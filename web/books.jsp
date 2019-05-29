@@ -85,27 +85,19 @@
                             <a href="#">Link</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">排行榜<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Another action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">Separated link</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">One more separated link</a>
-                                </li>
+                                    <li><a href="/top/allvisit/" title="点击总榜">点击总榜</a></li>
+                                    <li><a href="/top/allvote/" title="推荐总榜">推荐总榜</a></li>
+                                    <li><a href="/top/monthvisit/" title="点击月榜">点击月榜</a></li>
+                                    <li><a href="/top/monthvote/" title="推荐月榜">推荐月榜</a></li>
+                                    <li><a href="/top/weekvisit/" title="周排行榜">周排行榜</a></li>
+                                    <li><a href="/top/weekvote/" title="周推荐榜">周推荐榜</a></li>
+                                    <li><a href="/top/goodnum/" title="总收藏榜">总收藏榜</a></li>
+                                    <li><a href="/top/toptime/" title="本站推荐">本站推荐</a></li>
+                                    <li><a href="/top/size/" title="字数排行">字数排行</a></li>
+                                    <li><a href="/top/lastupdate/" title="最近更新">最近更新</a></li>
+                                    <li><a href="/top/postdate/" title="最新入库">最新入库</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -149,6 +141,121 @@
         Integer totalpages = pagebean.getTotalpages();
     %>
     <div class="div_left">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab-weekvisit" role="tab" data-toggle="tab">本月热门</a></li>
+            <li role="presentation"><a href="#tab-goodnum" role="tab" data-toggle="tab">收藏排行</a></li>
+            <li role="presentation"><a href="#tab-allvote" role="tab" data-toggle="tab">网友推荐</a></li>
+        </ul>
+        <div class="tab-content mt10">
+            <div role="tabpanel" class="tab-pane active" id="tab-weekvisit">
+                <ul class="list-group list-top">
+
+                    <li class="list-group-item"><i class="topNum">1</i><a href="http://rw.svip3.cn/book/1.html" title="战天龙帝">战天龙帝</a><small class="text-muted">/ 天岩</small><span class="pull-right text-muted">483</span></li>
+
+                    <li class="list-group-item"><i class="topNum">2</i><a href="http://rw.svip3.cn/book/42.html" title="逆剑狂神">逆剑狂神</a><small class="text-muted">/ 一剑清新</small><span class="pull-right text-muted">354</span></li>
+
+                    <li class="list-group-item"><i class="topNum">3</i><a href="http://rw.svip3.cn/book/4.html" title="忠犬已到请签收">忠犬已到请签收</a><small class="text-muted">/ 淡粥</small><span class="pull-right text-muted">304</span></li>
+
+                    <li class="list-group-item"><i class="topNum">4</i><a href="http://rw.svip3.cn/book/32.html" title="能穿越的修行者">能穿越的修行者</a><small class="text-muted">/ 神秘男人</small><span class="pull-right text-muted">119</span></li>
+
+                    <li class="list-group-item"><i class="topNum">5</i><a href="http://rw.svip3.cn/book/33.html" title="网游之隐士无双">网游之隐士无双</a><small class="text-muted">/ 季郁</small><span class="pull-right text-muted">84</span></li>
+
+                    <li class="list-group-item"><i class="topNum">6</i><a href="http://rw.svip3.cn/book/18.html" title="寒门状元">寒门状元</a><small class="text-muted">/ 天子</small><span class="pull-right text-muted">74</span></li>
+
+                    <li class="list-group-item"><i class="topNum">7</i><a href="http://rw.svip3.cn/book/3.html" title="圣墟">圣墟</a><small class="text-muted">/ 辰东</small><span class="pull-right text-muted">70</span></li>
+
+                    <li class="list-group-item"><i class="topNum">8</i><a href="http://rw.svip3.cn/book/30.html" title="郭大炮的文娱生涯">郭大炮的文娱生涯</a><small class="text-muted">/ 大江入海</small><span class="pull-right text-muted">66</span></li>
+
+                    <li class="list-group-item"><i class="topNum">9</i><a href="http://rw.svip3.cn/book/2.html" title="都市之修仙战尊">都市之修仙战尊</a><small class="text-muted">/ 盛世狼烟</small><span class="pull-right text-muted">52</span></li>
+
+                    <li class="list-group-item"><i class="topNum">10</i><a href="http://rw.svip3.cn/book/26.html" title="三国大土匪">三国大土匪</a><small class="text-muted">/ 黑风土匪</small><span class="pull-right text-muted">50</span></li>
+
+                    <li class="list-group-item"><i class="topNum">11</i><a href="http://rw.svip3.cn/book/43.html" title="极品鬼女阴阳鉴">极品鬼女阴阳鉴</a><small class="text-muted">/ 我是张小帅</small><span class="pull-right text-muted">45</span></li>
+
+                    <li class="list-group-item"><i class="topNum">12</i><a href="http://rw.svip3.cn/book/34.html" title="一号红人">一号红人</a><small class="text-muted">/ 山间老寺</small><span class="pull-right text-muted">42</span></li>
+
+                    <li class="list-group-item"><i class="topNum">13</i><a href="http://rw.svip3.cn/book/38.html" title="网游之亡灵神官">网游之亡灵神官</a><small class="text-muted">/ 九年起点教育</small><span class="pull-right text-muted">42</span></li>
+
+                    <li class="list-group-item"><i class="topNum">14</i><a href="http://rw.svip3.cn/book/36.html" title="梦幻西游大主播">梦幻西游大主播</a><small class="text-muted">/ 懵比的小提莫</small><span class="pull-right text-muted">40</span></li>
+
+                    <li class="list-group-item"><i class="topNum">15</i><a href="http://rw.svip3.cn/book/5.html" title="都市无上仙尊">都市无上仙尊</a><small class="text-muted">/ 纸花船</small><span class="pull-right text-muted">37</span></li>
+
+
+                </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-goodnum">
+                <ul class="list-group list-top">
+
+                    <li class="list-group-item"><i class="topNum">1</i><a href="http://rw.svip3.cn/book/1.html" title="战天龙帝">战天龙帝</a><small class="text-muted">/ 天岩</small><span class="pull-right text-muted">483</span></li>
+
+                    <li class="list-group-item"><i class="topNum">2</i><a href="http://rw.svip3.cn/book/4.html" title="忠犬已到请签收">忠犬已到请签收</a><small class="text-muted">/ 淡粥</small><span class="pull-right text-muted">304</span></li>
+
+                    <li class="list-group-item"><i class="topNum">3</i><a href="http://rw.svip3.cn/book/42.html" title="逆剑狂神">逆剑狂神</a><small class="text-muted">/ 一剑清新</small><span class="pull-right text-muted">354</span></li>
+
+                    <li class="list-group-item"><i class="topNum">4</i><a href="http://rw.svip3.cn/book/18.html" title="寒门状元">寒门状元</a><small class="text-muted">/ 天子</small><span class="pull-right text-muted">74</span></li>
+
+                    <li class="list-group-item"><i class="topNum">5</i><a href="http://rw.svip3.cn/book/2.html" title="都市之修仙战尊">都市之修仙战尊</a><small class="text-muted">/ 盛世狼烟</small><span class="pull-right text-muted">52</span></li>
+
+                    <li class="list-group-item"><i class="topNum">6</i><a href="http://rw.svip3.cn/book/32.html" title="能穿越的修行者">能穿越的修行者</a><small class="text-muted">/ 神秘男人</small><span class="pull-right text-muted">119</span></li>
+
+                    <li class="list-group-item"><i class="topNum">7</i><a href="http://rw.svip3.cn/book/33.html" title="网游之隐士无双">网游之隐士无双</a><small class="text-muted">/ 季郁</small><span class="pull-right text-muted">84</span></li>
+
+                    <li class="list-group-item"><i class="topNum">8</i><a href="http://rw.svip3.cn/book/13.html" title="神级门派系统">神级门派系统</a><small class="text-muted">/ 弘琰</small><span class="pull-right text-muted">31</span></li>
+
+                    <li class="list-group-item"><i class="topNum">9</i><a href="http://rw.svip3.cn/book/29.html" title="大唐风华路">大唐风华路</a><small class="text-muted">/ 山下出水</small><span class="pull-right text-muted">37</span></li>
+
+                    <li class="list-group-item"><i class="topNum">10</i><a href="http://rw.svip3.cn/book/30.html" title="郭大炮的文娱生涯">郭大炮的文娱生涯</a><small class="text-muted">/ 大江入海</small><span class="pull-right text-muted">66</span></li>
+
+                    <li class="list-group-item"><i class="topNum">11</i><a href="http://rw.svip3.cn/book/38.html" title="网游之亡灵神官">网游之亡灵神官</a><small class="text-muted">/ 九年起点教育</small><span class="pull-right text-muted">42</span></li>
+
+                    <li class="list-group-item"><i class="topNum">12</i><a href="http://rw.svip3.cn/book/3.html" title="圣墟">圣墟</a><small class="text-muted">/ 辰东</small><span class="pull-right text-muted">70</span></li>
+
+                    <li class="list-group-item"><i class="topNum">13</i><a href="http://rw.svip3.cn/book/5.html" title="都市无上仙尊">都市无上仙尊</a><small class="text-muted">/ 纸花船</small><span class="pull-right text-muted">37</span></li>
+
+                    <li class="list-group-item"><i class="topNum">14</i><a href="http://rw.svip3.cn/book/19.html" title="大数据修仙">大数据修仙</a><small class="text-muted">/ 陈风笑</small><span class="pull-right text-muted">31</span></li>
+
+                    <li class="list-group-item"><i class="topNum">15</i><a href="http://rw.svip3.cn/book/20.html" title="打造异界">打造异界</a><small class="text-muted">/ 华任仇</small><span class="pull-right text-muted">19</span></li>
+
+                </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-allvote">
+                <ul class="list-group list-top">
+
+                    <li class="list-group-item"><i class="topNum">1</i><a href="http://rw.svip3.cn/book/42.html" title="逆剑狂神">逆剑狂神</a><small class="text-muted">/ 一剑清新</small><span class="pull-right text-muted">354</span></li>
+
+                    <li class="list-group-item"><i class="topNum">2</i><a href="http://rw.svip3.cn/book/1.html" title="战天龙帝">战天龙帝</a><small class="text-muted">/ 天岩</small><span class="pull-right text-muted">483</span></li>
+
+                    <li class="list-group-item"><i class="topNum">3</i><a href="http://rw.svip3.cn/book/4.html" title="忠犬已到请签收">忠犬已到请签收</a><small class="text-muted">/ 淡粥</small><span class="pull-right text-muted">304</span></li>
+
+                    <li class="list-group-item"><i class="topNum">4</i><a href="http://rw.svip3.cn/book/18.html" title="寒门状元">寒门状元</a><small class="text-muted">/ 天子</small><span class="pull-right text-muted">74</span></li>
+
+                    <li class="list-group-item"><i class="topNum">5</i><a href="http://rw.svip3.cn/book/26.html" title="三国大土匪">三国大土匪</a><small class="text-muted">/ 黑风土匪</small><span class="pull-right text-muted">50</span></li>
+
+                    <li class="list-group-item"><i class="topNum">6</i><a href="http://rw.svip3.cn/book/30.html" title="郭大炮的文娱生涯">郭大炮的文娱生涯</a><small class="text-muted">/ 大江入海</small><span class="pull-right text-muted">66</span></li>
+
+                    <li class="list-group-item"><i class="topNum">7</i><a href="http://rw.svip3.cn/book/32.html" title="能穿越的修行者">能穿越的修行者</a><small class="text-muted">/ 神秘男人</small><span class="pull-right text-muted">119</span></li>
+
+                    <li class="list-group-item"><i class="topNum">8</i><a href="http://rw.svip3.cn/book/33.html" title="网游之隐士无双">网游之隐士无双</a><small class="text-muted">/ 季郁</small><span class="pull-right text-muted">84</span></li>
+
+                    <li class="list-group-item"><i class="topNum">9</i><a href="http://rw.svip3.cn/book/36.html" title="梦幻西游大主播">梦幻西游大主播</a><small class="text-muted">/ 懵比的小提莫</small><span class="pull-right text-muted">40</span></li>
+
+                    <li class="list-group-item"><i class="topNum">10</i><a href="http://rw.svip3.cn/book/2.html" title="都市之修仙战尊">都市之修仙战尊</a><small class="text-muted">/ 盛世狼烟</small><span class="pull-right text-muted">52</span></li>
+
+                    <li class="list-group-item"><i class="topNum">11</i><a href="http://rw.svip3.cn/book/3.html" title="圣墟">圣墟</a><small class="text-muted">/ 辰东</small><span class="pull-right text-muted">70</span></li>
+
+                    <li class="list-group-item"><i class="topNum">12</i><a href="http://rw.svip3.cn/book/5.html" title="都市无上仙尊">都市无上仙尊</a><small class="text-muted">/ 纸花船</small><span class="pull-right text-muted">37</span></li>
+
+                    <li class="list-group-item"><i class="topNum">13</i><a href="http://rw.svip3.cn/book/6.html" title="仙武世界大穿越">仙武世界大穿越</a><small class="text-muted">/ 我为谪仙人</small><span class="pull-right text-muted">19</span></li>
+
+                    <li class="list-group-item"><i class="topNum">14</i><a href="http://rw.svip3.cn/book/7.html" title="Pick Me">Pick Me</a><small class="text-muted">/ 笔下超生</small><span class="pull-right text-muted">9</span></li>
+
+                    <li class="list-group-item"><i class="topNum">15</i><a href="http://rw.svip3.cn/book/8.html" title="紫阳帝尊">紫阳帝尊</a><small class="text-muted">/ 水秀山青</small><span class="pull-right text-muted">8</span></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="div_center">
     <div class="row">
     <%
     List<BX_Books> list=pagebean.getList();

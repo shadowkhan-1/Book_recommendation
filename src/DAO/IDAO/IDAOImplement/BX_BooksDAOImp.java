@@ -105,4 +105,20 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         }
         return count;
     }
+    @Override
+    public List<BX_Books> FindByCount() throws Exception {
+        String sql = "select BX_Books.ISBN,Book_Title,Book_Author,book_count from BX_Books right join " +
+                "(select ISBN,count(*) book_count from BX_Book_Ratings group by ISBN order by book_count desc limit 15)";
+        pts = conn.prepareStatement(sql);
+        ResultSet rs = pts.executeQuery();
+        List<BX_Books> all = new ArrayList<BX_Books>();
+        while(rs.next()){
+            BX_Books vo = new BX_Books();
+            vo.setISBN(rs.getString(1));
+            vo.setBook_Author(rs.getString(2));
+            vo.setBook_Count(rs.getInt(3));
+            all.add(vo);
+        }
+        return all;
+    }
 }

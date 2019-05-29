@@ -15,7 +15,12 @@ body {  padding-top: 70px; padding-bottom: 70px;}
     padding: 13px 25px 5px 25px;
 }
 .div_left{
-    width: 80%;
+    width: 20%;
+    float: left;
+    border:0px none;
+}
+.div_center{
+    width: 60%;
     float: left;
     border:0px none;
 }
@@ -23,6 +28,35 @@ body {  padding-top: 70px; padding-bottom: 70px;}
     width: 20%;
     float: left;
     border:0px none;
+}
+.list-group-item:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.list-top li:nth-child(1) i.topNum, .list-top li:nth-child(2) i.topNum, .list-top li:nth-child(3) i.topNum {
+    background: #ffce00;
+}
+.list-top i.topNum {
+    display: inline-block;
+    margin-right: 5px;
+    background: #c3c3c3;
+    color: #ffffff;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 2px 2px;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
 }
 /*.thumbnail{*/
 /*    border:0px none;*/

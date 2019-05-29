@@ -36,6 +36,19 @@ public class BX_BooksServiceImp implements IBX_BooksService {
     }
 
     @Override
+    public List<BX_Books> findbycount() throws Exception {
+        try{
+            return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindByCount();
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
     public boolean insert(BX_Books vo) throws Exception {
         return false;
     }
