@@ -18,14 +18,17 @@ public class getbook extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         String _pages = request.getParameter("pages");
         List<BX_Books> list = new ArrayList<BX_Books>();
+        List<BX_Books> book_list = new ArrayList<BX_Books>();
         if(_pages!=null){
             pages = Integer.parseInt(_pages);
         }
         list = ServiceFactory.getBX_BooksServiceInterface().findbypage(pages);
+        book_list = ServiceFactory.getBX_BooksServiceInterface().findbycount();
         Integer totalbook = ServiceFactory.getBX_BooksServiceInterface().findcount();
         pagebean.setList(list);
         pagebean.setTotalbook(totalbook);
         pagebean.setPages(pages);
+        pagebean.setBook_list(book_list);
         pagebean.setTotalpages(totalbook / pagebean.getPagesize());
         context.put("pagebean", pagebean);
         return "success";

@@ -9,6 +9,7 @@
 <%@ page import="table.BX_Books,java.util.List" %>
 <%@ page import="javabean.PageBean" %>
 <%@ page import="javabean.UserBean" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
     <title>书籍</title>
@@ -103,7 +104,7 @@
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" />
+                            <input type="text" class="form-control" placeholder="请输入关键字" />
                         </div> <button type="submit" class="btn btn-default">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
@@ -149,38 +150,13 @@
         <div class="tab-content mt10">
             <div role="tabpanel" class="tab-pane active" id="tab-weekvisit">
                 <ul class="list-group list-top">
-
-                    <li class="list-group-item"><i class="topNum">1</i><a href="http://rw.svip3.cn/book/1.html" title="战天龙帝">战天龙帝</a><small class="text-muted">/ 天岩</small><span class="pull-right text-muted">483</span></li>
-
-                    <li class="list-group-item"><i class="topNum">2</i><a href="http://rw.svip3.cn/book/42.html" title="逆剑狂神">逆剑狂神</a><small class="text-muted">/ 一剑清新</small><span class="pull-right text-muted">354</span></li>
-
-                    <li class="list-group-item"><i class="topNum">3</i><a href="http://rw.svip3.cn/book/4.html" title="忠犬已到请签收">忠犬已到请签收</a><small class="text-muted">/ 淡粥</small><span class="pull-right text-muted">304</span></li>
-
-                    <li class="list-group-item"><i class="topNum">4</i><a href="http://rw.svip3.cn/book/32.html" title="能穿越的修行者">能穿越的修行者</a><small class="text-muted">/ 神秘男人</small><span class="pull-right text-muted">119</span></li>
-
-                    <li class="list-group-item"><i class="topNum">5</i><a href="http://rw.svip3.cn/book/33.html" title="网游之隐士无双">网游之隐士无双</a><small class="text-muted">/ 季郁</small><span class="pull-right text-muted">84</span></li>
-
-                    <li class="list-group-item"><i class="topNum">6</i><a href="http://rw.svip3.cn/book/18.html" title="寒门状元">寒门状元</a><small class="text-muted">/ 天子</small><span class="pull-right text-muted">74</span></li>
-
-                    <li class="list-group-item"><i class="topNum">7</i><a href="http://rw.svip3.cn/book/3.html" title="圣墟">圣墟</a><small class="text-muted">/ 辰东</small><span class="pull-right text-muted">70</span></li>
-
-                    <li class="list-group-item"><i class="topNum">8</i><a href="http://rw.svip3.cn/book/30.html" title="郭大炮的文娱生涯">郭大炮的文娱生涯</a><small class="text-muted">/ 大江入海</small><span class="pull-right text-muted">66</span></li>
-
-                    <li class="list-group-item"><i class="topNum">9</i><a href="http://rw.svip3.cn/book/2.html" title="都市之修仙战尊">都市之修仙战尊</a><small class="text-muted">/ 盛世狼烟</small><span class="pull-right text-muted">52</span></li>
-
-                    <li class="list-group-item"><i class="topNum">10</i><a href="http://rw.svip3.cn/book/26.html" title="三国大土匪">三国大土匪</a><small class="text-muted">/ 黑风土匪</small><span class="pull-right text-muted">50</span></li>
-
-                    <li class="list-group-item"><i class="topNum">11</i><a href="http://rw.svip3.cn/book/43.html" title="极品鬼女阴阳鉴">极品鬼女阴阳鉴</a><small class="text-muted">/ 我是张小帅</small><span class="pull-right text-muted">45</span></li>
-
-                    <li class="list-group-item"><i class="topNum">12</i><a href="http://rw.svip3.cn/book/34.html" title="一号红人">一号红人</a><small class="text-muted">/ 山间老寺</small><span class="pull-right text-muted">42</span></li>
-
-                    <li class="list-group-item"><i class="topNum">13</i><a href="http://rw.svip3.cn/book/38.html" title="网游之亡灵神官">网游之亡灵神官</a><small class="text-muted">/ 九年起点教育</small><span class="pull-right text-muted">42</span></li>
-
-                    <li class="list-group-item"><i class="topNum">14</i><a href="http://rw.svip3.cn/book/36.html" title="梦幻西游大主播">梦幻西游大主播</a><small class="text-muted">/ 懵比的小提莫</small><span class="pull-right text-muted">40</span></li>
-
-                    <li class="list-group-item"><i class="topNum">15</i><a href="http://rw.svip3.cn/book/5.html" title="都市无上仙尊">都市无上仙尊</a><small class="text-muted">/ 纸花船</small><span class="pull-right text-muted">37</span></li>
-
-
+                    <%
+                        List<BX_Books> top_book_list = pagebean.getList();
+                        for (int i=0;i<top_book_list.size();i++){
+                            if (i>14) break;
+                    %>
+                    <li class="list-group-item"><i class="topNum"><%=i+1%></i><a href="" title=<%=top_book_list.get(i).getBook_Title()%>><%=top_book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=top_book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=top_book_list.get(i).getBook_Count()%></span></li>
+                    <%}%>
                 </ul>
             </div>
             <div role="tabpanel" class="tab-pane" id="tab-goodnum">
@@ -218,39 +194,16 @@
 
                 </ul>
             </div>
+
             <div role="tabpanel" class="tab-pane" id="tab-allvote">
                 <ul class="list-group list-top">
-
-                    <li class="list-group-item"><i class="topNum">1</i><a href="http://rw.svip3.cn/book/42.html" title="逆剑狂神">逆剑狂神</a><small class="text-muted">/ 一剑清新</small><span class="pull-right text-muted">354</span></li>
-
-                    <li class="list-group-item"><i class="topNum">2</i><a href="http://rw.svip3.cn/book/1.html" title="战天龙帝">战天龙帝</a><small class="text-muted">/ 天岩</small><span class="pull-right text-muted">483</span></li>
-
-                    <li class="list-group-item"><i class="topNum">3</i><a href="http://rw.svip3.cn/book/4.html" title="忠犬已到请签收">忠犬已到请签收</a><small class="text-muted">/ 淡粥</small><span class="pull-right text-muted">304</span></li>
-
-                    <li class="list-group-item"><i class="topNum">4</i><a href="http://rw.svip3.cn/book/18.html" title="寒门状元">寒门状元</a><small class="text-muted">/ 天子</small><span class="pull-right text-muted">74</span></li>
-
-                    <li class="list-group-item"><i class="topNum">5</i><a href="http://rw.svip3.cn/book/26.html" title="三国大土匪">三国大土匪</a><small class="text-muted">/ 黑风土匪</small><span class="pull-right text-muted">50</span></li>
-
-                    <li class="list-group-item"><i class="topNum">6</i><a href="http://rw.svip3.cn/book/30.html" title="郭大炮的文娱生涯">郭大炮的文娱生涯</a><small class="text-muted">/ 大江入海</small><span class="pull-right text-muted">66</span></li>
-
-                    <li class="list-group-item"><i class="topNum">7</i><a href="http://rw.svip3.cn/book/32.html" title="能穿越的修行者">能穿越的修行者</a><small class="text-muted">/ 神秘男人</small><span class="pull-right text-muted">119</span></li>
-
-                    <li class="list-group-item"><i class="topNum">8</i><a href="http://rw.svip3.cn/book/33.html" title="网游之隐士无双">网游之隐士无双</a><small class="text-muted">/ 季郁</small><span class="pull-right text-muted">84</span></li>
-
-                    <li class="list-group-item"><i class="topNum">9</i><a href="http://rw.svip3.cn/book/36.html" title="梦幻西游大主播">梦幻西游大主播</a><small class="text-muted">/ 懵比的小提莫</small><span class="pull-right text-muted">40</span></li>
-
-                    <li class="list-group-item"><i class="topNum">10</i><a href="http://rw.svip3.cn/book/2.html" title="都市之修仙战尊">都市之修仙战尊</a><small class="text-muted">/ 盛世狼烟</small><span class="pull-right text-muted">52</span></li>
-
-                    <li class="list-group-item"><i class="topNum">11</i><a href="http://rw.svip3.cn/book/3.html" title="圣墟">圣墟</a><small class="text-muted">/ 辰东</small><span class="pull-right text-muted">70</span></li>
-
-                    <li class="list-group-item"><i class="topNum">12</i><a href="http://rw.svip3.cn/book/5.html" title="都市无上仙尊">都市无上仙尊</a><small class="text-muted">/ 纸花船</small><span class="pull-right text-muted">37</span></li>
-
-                    <li class="list-group-item"><i class="topNum">13</i><a href="http://rw.svip3.cn/book/6.html" title="仙武世界大穿越">仙武世界大穿越</a><small class="text-muted">/ 我为谪仙人</small><span class="pull-right text-muted">19</span></li>
-
-                    <li class="list-group-item"><i class="topNum">14</i><a href="http://rw.svip3.cn/book/7.html" title="Pick Me">Pick Me</a><small class="text-muted">/ 笔下超生</small><span class="pull-right text-muted">9</span></li>
-
-                    <li class="list-group-item"><i class="topNum">15</i><a href="http://rw.svip3.cn/book/8.html" title="紫阳帝尊">紫阳帝尊</a><small class="text-muted">/ 水秀山青</small><span class="pull-right text-muted">8</span></li>
-
+             <%
+                List<BX_Books> book_list = pagebean.getBook_list();
+                for(int i=0;i<book_list.size();i++){
+                    String title_href = "https://www.baidu.com/s?wd="+book_list.get(i).getBook_Title().replace(" ","+")+"&ie=UTF-8";
+             %>
+                    <li class="list-group-item"><i class="topNum"><%=i+1%></i><a href=<%=title_href%> target="_blank" title=<%=book_list.get(i).getBook_Title()%>><%=book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=book_list.get(i).getBook_Count()%></span></li>
+                <%}%>
                 </ul>
             </div>
         </div>
@@ -294,7 +247,7 @@
         <li><a href="getbook?pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
         <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
         <li><a href="getbook?pages=<%=totalpages%>">最后一页</a></li>
-        <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" value="跳转" name="submit"></li>
+        <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
     </ul>
     </nav>
 </form>

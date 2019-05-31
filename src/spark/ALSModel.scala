@@ -1,7 +1,6 @@
 package spark
 import org.apache.spark.{SparkContext,SparkConf}
 import org.apache.spark.mllib.recommendation.{MatrixFactorizationModel,ALS,Rating}
-import org.apache.spark.rdd.RDD
 object ALSModel {
 
       def main(args: Array[String]): Unit = {

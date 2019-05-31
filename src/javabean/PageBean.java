@@ -10,6 +10,15 @@ public class PageBean {
     private Integer totalpages;
     private Integer pages;
     private List<BX_Books> list;
+    private List<BX_Books> book_list;
+
+    public List<BX_Books> getBook_list() {
+        return this.book_list;
+    }
+
+    public void setBook_list(final List<BX_Books> book_list) {
+        this.book_list = book_list;
+    }
 
     public Integer getTotalbook() {
         return this.totalbook;
