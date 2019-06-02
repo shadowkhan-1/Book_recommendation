@@ -5,7 +5,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
 import table.BX_Books
 import org.apache.spark.sql.hive.HiveContext
-object test {
+object test1 {
   def main(args: Array[String]): Unit = {
       val conf = new SparkConf().setAppName("test").setMaster("local")
       val sc = new SparkContext(conf)
