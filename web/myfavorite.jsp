@@ -58,7 +58,7 @@
 <%
     UserBean userbean = (UserBean)session.getAttribute("userbean");
 %>
-<div class="container">
+<div class="container-fiuled">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -178,6 +178,9 @@
             </ul>
         </nav>
     </form>
+    <div class="favorite">
+        test
+    </div>
 </div>
 </body>
 </html>

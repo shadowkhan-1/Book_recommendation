@@ -8,7 +8,7 @@ import org.apache.spark.SparkContext._
   * 根据物品相似度、用户评分、指定最大推荐数量进行用户推荐
   */
 
-class RecommendedItem {
+class RecommendedItem extends Serializable{
   /**
     * 用户推荐计算.
     * @param items_similar 物品相似度
@@ -45,6 +45,7 @@ class RecommendedItem {
       val id2 = f._2
       for (w <- id2) yield (f._1, w._1, w._2)
     })
+//    rdd_app1_R8.map(f => UserRecomm(f._1, f._2, f._3)).repartition(4).saveAsObjectFile("./input/modelPath")
     rdd_app1_R8.map(f => UserRecomm(f._1, f._2, f._3))
   }
 
@@ -75,5 +76,4 @@ class RecommendedItem {
       sortBy(f => (f._1, f._3))
     rdd_app1_R6.map(f => UserRecomm(f._1, f._2, f._3))
   }
-
 }

@@ -15,8 +15,8 @@ object ItemCF {
     //1 读取样本数据
     val data_path = "./input/test.csv"
     val data = sc.textFile(data_path)
-
-    //去除首行
+//
+//    //去除首行
     val header = data.first()
     val userdata = data.filter(row=>row!=header).map(_.split(";")).map(f => (ItemPref(f(0), f(1), f(2).replaceAll("\"","").toDouble))).cache()
 
@@ -27,14 +27,18 @@ object ItemCF {
     val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata, 10)
 
     //3 打印结果
-    println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
-    simil_rdd1.collect().foreach { ItemSimi =>
-      println(ItemSimi.itemid2 + ", " + ItemSimi.itemid1 + ", " + ItemSimi.similar)
-    }
-    println(s"用戶推荐列表: ${recommd_rdd1.count()}")
-    recommd_rdd1.collect().foreach { UserRecomm =>
-      println(UserRecomm.userid + ", " + UserRecomm.itemid + ", " + UserRecomm.pref)
-    }
+//    println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
+//    simil_rdd1.collect().foreach { ItemSimi =>
+//      println(ItemSimi.itemid2 + ", " + ItemSimi.itemid1 + ", " + ItemSimi.similar)
+//    }
+    val recommd_model:RDD[(String,String,Double)] = sc.objectFile[(String,String,Double)]("./input/modelPath")
+    println(s"测试：${recommd_model.count()}")
+    val rdd = recommd_model.map(x=>(x._1,x._1,x._3))
+    rdd.foreach(x=>println(x._1,x._2,x._3))
+//    println(s"用戶推荐列表: ${recommd_rdd1.count()}")
+//    recommd_rdd1.collect().foreach { UserRecomm =>
+//      println(UserRecomm.userid + ", " + UserRecomm.itemid + ", " + UserRecomm.pref)
+//    }
 
   }
 }

@@ -91,6 +91,11 @@ body {  padding-top: 70px; padding-bottom: 70px;}
     height: 20px;
     background: #ed4259;
 }
+.favorite{
+    widows: 20%;
+    float: left;
+    border: 1px solid#28ff46;
+}
 /*.book_grade{*/
 /*    position: absolute;*/
 /*    line-height: 18px;*/
