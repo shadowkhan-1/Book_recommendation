@@ -75,27 +75,19 @@
                             <a href="#">Link</a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">排行榜<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Another action</a>
-                                </li>
-                                <li>
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">Separated link</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">One more separated link</a>
-                                </li>
+                                <li><a href="/top/allvisit/" title="点击总榜">点击总榜</a></li>
+                                <li><a href="/top/allvote/" title="推荐总榜">推荐总榜</a></li>
+                                <li><a href="/top/monthvisit/" title="点击月榜">点击月榜</a></li>
+                                <li><a href="/top/monthvote/" title="推荐月榜">推荐月榜</a></li>
+                                <li><a href="/top/weekvisit/" title="周排行榜">周排行榜</a></li>
+                                <li><a href="/top/weekvote/" title="周推荐榜">周推荐榜</a></li>
+                                <li><a href="/top/goodnum/" title="总收藏榜">总收藏榜</a></li>
+                                <li><a href="/top/toptime/" title="本站推荐">本站推荐</a></li>
+                                <li><a href="/top/size/" title="字数排行">字数排行</a></li>
+                                <li><a href="/top/lastupdate/" title="最近更新">最近更新</a></li>
+                                <li><a href="/top/postdate/" title="最新入库">最新入库</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -138,6 +130,7 @@
         Integer pages = pagebean.getPages();
         Integer totalpages = pagebean.getTotalpages();
     %>
+    <div class="favorite_left">
         <div class="row">
             <%
                 List<BX_Books> list=pagebean.getList();
@@ -165,7 +158,10 @@
             </div>
             <%} %>
         </div>
-
+    </div>
+    <div class="favorite">
+        test
+    </div>
     <form action="getfavorite?username=<%=userbean.getUsername()%>">
         <nav style="text-align: center">
             <ul class="pagination">
@@ -178,9 +174,6 @@
             </ul>
         </nav>
     </form>
-    <div class="favorite">
-        test
-    </div>
 </div>
 </body>
 </html>
