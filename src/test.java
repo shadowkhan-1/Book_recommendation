@@ -21,9 +21,13 @@ public class test {
 //        for(BX_Books i:list){
 //            System.out.println(i.getBook_Author());
 //        }
-        double d = 114.145;
-        BigDecimal b = new BigDecimal(d);
-        d = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-        System.out.println(d);
+//        double d = 114.145;
+//        BigDecimal b = new BigDecimal(d);
+//        d = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//        System.out.println(d);
+        String a = "12313X";
+        String  b= "12313X";
+        System.out.println(a.hashCode());
+        System.out.println(b.hashCode());
     }
 }

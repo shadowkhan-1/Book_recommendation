@@ -3,6 +3,7 @@ package spark
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext._
 
+
 /**
   * 用户推荐计算.
   * 根据物品相似度、用户评分、指定最大推荐数量进行用户推荐

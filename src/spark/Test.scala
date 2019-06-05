@@ -16,8 +16,9 @@ object ItemCF {
     Logger.getRootLogger.setLevel(Level.WARN)
 
     //1 读取样本数据
-    val data_path = "./input/bx_book_ratings.csv"
+    val data_path = "./input/bx_book_ratingsaa"
     val data = sc.textFile(data_path)
+    val output = "./output/recommend"
 //
 //    //去除首行
     val header = data.first()
@@ -30,7 +31,7 @@ object ItemCF {
     val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata, 10)
 
     //3 打印结果
-//    println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
+    println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
 //    simil_rdd1.collect().foreach { ItemSimi =>
 //      println(ItemSimi.itemid2 + ", " + ItemSimi.itemid1 + ", " + ItemSimi.similar)
 //    }
@@ -52,7 +53,7 @@ object ItemCF {
         .toString()
         .replace(")","")
         .replace("(","")
-      }.saveAsTextFile("./output/recommend")
+      }.saveAsTextFile(output)
   }
 }
 

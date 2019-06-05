@@ -3,6 +3,8 @@ package spark
 import scala.math._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext._
+import org.apache.spark.mllib.linalg._
+import org.apache.spark.mllib.linalg.distributed._
 
 /**
   * 用户评分.
@@ -159,6 +161,10 @@ object ItemSimilarity {
     // 6 结果返回
     user_rdd9.map(f => ItemSimi(f._1, f._2, f._3))
   }
+//  def MLlibSimilarity(user_rdd:RDD[ItemPref]):(RDD[ItemSimi])={
+//        val user_rdd1 = user_rdd.map(f=>(f.userid,f.itemid,f.pref)).map(line=>Vectors.dense(line)).map()
+//        val matrix = new IndexedRowMatrix(user_rdd1)
+//  }
 
 }
 
