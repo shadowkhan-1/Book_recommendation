@@ -18,11 +18,12 @@ object ItemCF {
     //1 读取样本数据
     val data_path = "./input/bx_book_ratings/"
     val output = "./output/recommend/"
+    val output1 = "./output/similarity/"
 //
 //    //去除首行
 //    val header = data.first()
-    var i =34
-    for (i <- 34 to 206){
+    var i =1
+    for (i <- 1 to 206){
     val data = sc.textFile(data_path+i)
       println("正在读取："+data_path+i)
     val userdata = data.map(_.split(";")).map(f => (ItemPref(f(0), f(1), f(2).toDouble))).cache()
@@ -31,15 +32,17 @@ object ItemCF {
     val simil_rdd1 = mysimil.Similarity(userdata, "cooccurrence")
     val recommd = new RecommendedItem
     val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata, 10)
-
-
-
 //  打印结果
     println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
 //    simil_rdd1.collect().foreach { ItemSimi =>
 //      println(ItemSimi.itemid2 + ", " + ItemSimi.itemid1 + ", " + ItemSimi.similar)
 //    }
-
+      println("正在保存相似度")
+      simil_rdd1.map{ItemSimi=>(ItemSimi.itemid2,ItemSimi.itemid1,ItemSimi.similar)
+          .toString()
+          .replace(")","")
+          .replace("(","")
+      }.saveAsTextFile(output1+i)
 //    println(s"用戶推荐列表: ${recommd_rdd1.count()}")
 //    recommd_rdd1.collect().foreach { UserRecomm =>
 //      println(UserRecomm.userid + ", " + UserRecomm.itemid + ", " + UserRecomm.pref)
