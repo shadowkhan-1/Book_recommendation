@@ -3,6 +3,7 @@ package Service.IService.IServiceImplement;
 import Factory.DAOFactory;
 import Service.IService.IUser_FavoriteService;
 import connection.DatabaseConnection;
+import table.BX_Books;
 import table.User_Favorite;
 
 import java.sql.PreparedStatement;
@@ -24,9 +25,53 @@ public class User_FavoriteServiceImp implements IUser_FavoriteService {
     }
 
     @Override
+    public boolean findexist(User_Favorite vo) throws Exception {
+        try{
+            return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindExist(vo);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
+    public List<BX_Books> findbypage(String username, Integer pages) throws Exception {
+        try{
+            return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindByPage(username,pages);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
+    public Integer findcount() throws Exception {
+        try {
+            return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindCount();
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
     public boolean insert(User_Favorite vo) throws Exception {
         try{
-            return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).Create(vo);
+            if(DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).FindExist(vo)){
+                return false;
+            }
+            else {
+                return DAOFactory.getUser_FavoriteDAOInterface(dbc.getConnection()).Create(vo);
+            }
         }
         catch (Exception e){
             throw e;

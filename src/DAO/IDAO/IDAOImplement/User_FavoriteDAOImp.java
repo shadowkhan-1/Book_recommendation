@@ -1,6 +1,7 @@
 package DAO.IDAO.IDAOImplement;
 
 import DAO.IDAO.IUser_FavoriteDAO;
+import table.BX_Books;
 import table.User_Favorite;
 
 import java.sql.Connection;
@@ -44,7 +45,7 @@ public class User_FavoriteDAOImp implements IUser_FavoriteDAO {
 
     @Override
     public List<User_Favorite> FindAll() throws Exception {
-        String sql = "select id,username,ISBN from User_Favorite where username like ?";
+        String sql = "select id,username,ISBN from User_Favorite where username like ? limit ?,?";
         pts = conn.prepareStatement(sql);
         ResultSet rs = pts.executeQuery();
         List<User_Favorite> all = new ArrayList<User_Favorite>();
@@ -64,5 +65,62 @@ public class User_FavoriteDAOImp implements IUser_FavoriteDAO {
         pts = conn.prepareStatement(sql);
         pts.setInt(1,id);
         return pts.executeUpdate()>0;
+    }
+
+    @Override
+    public boolean FindExist(User_Favorite vo) throws Exception {
+        String sql = "select username from User_Favorite where ISBN like ?";
+        pts = conn.prepareStatement(sql);
+        pts.setString(1,vo.getISBN());
+        ResultSet rs = pts.executeQuery();
+        if(rs.next()){
+            if(rs.getString(1).equals(vo.getUsername())){
+                return true;
+            }
+            else {return false;}
+        }
+        return false;
+    }
+
+    @Override
+    public List<BX_Books> FindByPage(String username,Integer pages) throws Exception {
+        String sql = "select " +
+                "ISBN," +
+                "Book_Title," +
+                "Book_Author," +
+                "Year_Of_Publication," +
+                "Publisher,Image_URL_M,Image_URL_L " +
+                "from BX_Books where ISBN in " +
+                "(select ISBN from User_Favorite where username like ?) limit ?,?";
+        pts = conn.prepareStatement(sql);
+        pts.setString(1,username);
+        pts.setInt(2,(pages-1)* BX_Books.Page_Size);
+        pts.setInt(3,BX_Books.Page_Size);
+        ResultSet rs = pts.executeQuery();
+        List<BX_Books> all = new ArrayList<BX_Books>();
+        while(rs.next()){
+            BX_Books vo = new BX_Books();
+            vo.setISBN(rs.getString(1));
+            vo.setBook_Title(rs.getString(2));
+            vo.setBook_Author(rs.getString(3));;
+            vo.setYear_Of_Publication(rs.getInt(4));
+            vo.setPublisher(rs.getString(5));
+            vo.setImage_URL_M(rs.getString(6));
+            vo.setImage_URL_L(rs.getString(7));
+            all.add(vo);
+        }
+        return all;
+    }
+
+    @Override
+    public Integer FindCount() throws Exception {
+        Integer count = 0;
+        String sql = "select count(*) from User_Favorite";
+        pts = conn.prepareStatement(sql);
+        ResultSet rs = pts.executeQuery();
+        if(rs.next()){
+            count = rs.getInt(1);
+        }
+        return count;
     }
 }

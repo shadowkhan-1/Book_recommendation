@@ -18,7 +18,13 @@
             <result name="success">/books.jsp</result>
         </action>
         <action name="favorite" class="action.favorite" method="execute">
-            <result type="stream">books.jsp</result>
+            <result name="success" type="stream">                          <!--result的name是action的返回值 -->
+                <param name="contentType">text/html;charset = utf-8</param>  <!-- inputName是stream流的的名称  -->
+                <param name="inputName">message</param>
+            </result>
+        </action>
+        <action name="getfavorite" class="action.getfavorite" method="execute">
+            <result name="success">/myfavorite.jsp</result>
         </action>
     </package>
 </struts>
