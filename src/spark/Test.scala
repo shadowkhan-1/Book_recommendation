@@ -16,14 +16,14 @@ object ItemCF {
     Logger.getRootLogger.setLevel(Level.WARN)
 
     //1 读取样本数据
-    val data_path = "./input/bx_book_ratings/"
+    val data_path = "./input/book/"
     val output = "./output/recommend/"
     val output1 = "./output/similarity/"
 //
 //    //去除首行
 //    val header = data.first()
     var i =1
-    for (i <- 1 to 206){
+    for (i <- 1 to 21){
     val data = sc.textFile(data_path+i)
       println("正在读取："+data_path+i)
     val userdata = data.map(_.split(";")).map(f => (ItemPref(f(0), f(1), f(2).toDouble))).cache()
