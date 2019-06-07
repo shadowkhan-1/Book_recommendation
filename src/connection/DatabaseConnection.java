@@ -1,10 +1,11 @@
 package connection;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+public class DatabaseConnection implements Serializable {
         private static final String driver = "com.mysql.jdbc.Driver";
         private static final String url = "jdbc:mysql://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=false&";
         private static final String user="linwei";

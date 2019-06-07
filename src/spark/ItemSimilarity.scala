@@ -86,17 +86,21 @@ object ItemSimilarity {
     val user_rdd4 = user_rdd3.map(f => (f._2, 1))
     // 2 物品:物品:频次
     val user_rdd5 = user_rdd4.reduceByKey((x, y) => x + y)
-    // 3 对角矩阵
+    // 3 对角矩阵=一个物品的频率
     val user_rdd6 = user_rdd5.filter(f => f._1._1 == f._1._2)
-    // 4 非对角矩阵
+    // 4 非对角矩阵=不同的物品的频率
     val user_rdd7 = user_rdd5.filter(f => f._1._1 != f._1._2)
     // 5 计算同现相似度（物品1，物品2，同现频次）
     val user_rdd8 = user_rdd7.map(f => (f._1._1, (f._1._1, f._1._2, f._2))).
       join(user_rdd6.map(f => (f._1._1, f._2)))
+    //rdd9 = (物品２,(物品1,物品2,nij,ni))
     val user_rdd9 = user_rdd8.map(f => (f._2._1._2, (f._2._1._1,
       f._2._1._2, f._2._1._3, f._2._2)))
+    //rdd10 = (物品２,((物品1,物品2,nij,ni),nj))
     val user_rdd10 = user_rdd9.join(user_rdd6.map(f => (f._1._1, f._2)))
+    //rdd11 = (物品１,物品２,nij,ni,nj)
     val user_rdd11 = user_rdd10.map(f => (f._2._1._1, f._2._1._2, f._2._1._3, f._2._1._4, f._2._2))
+    //rdd12 = (物品1,物品2,n1/sqrt(n2*n3))
     val user_rdd12 = user_rdd11.map(f => (f._1, f._2, (f._3 / sqrt(f._4 * f._5))))
     // 6 结果返回
     user_rdd12.map(f => ItemSimi(f._1, f._2, f._3))
