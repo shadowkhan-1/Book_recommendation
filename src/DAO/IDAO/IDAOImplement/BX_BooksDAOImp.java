@@ -123,4 +123,32 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         }
         return all;
     }
+
+    @Override
+    public List<BX_Books> FindRecommend(Integer User_ID) throws Exception {
+        String sql = "select " +
+                "ISBN," +
+                "Book_Title," +
+                "Book_Author," +
+                "Year_Of_Publication," +
+                "Publisher,Image_URL_M,Image_URL_L, " +
+                "from BX_Books where ISBN " +
+                "in(select ISBN from recommend where User_ID = ?)";
+        pts = conn.prepareStatement(sql);
+        pts.setInt(1,User_ID);
+        List<BX_Books> all = new ArrayList<BX_Books>();
+        ResultSet rs = pts.executeQuery();
+        while (rs.next()){
+            BX_Books vo = new BX_Books();
+            vo.setISBN(rs.getString(1));
+            vo.setBook_Title(rs.getString(2));
+            vo.setBook_Author(rs.getString(3));
+            vo.setYear_Of_Publication(rs.getInt(4));
+            vo.setPublisher(rs.getString(5));
+            vo.setImage_URL_M(rs.getString(6));
+            vo.setImage_URL_L(rs.getString(7));
+            all.add(vo)
+        }
+        return all;
+    }
 }
