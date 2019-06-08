@@ -16,7 +16,7 @@ object ItemCF {
 //    var pts:PreparedStatement = null
     //1 读取样本数据
     val data_path = "./input/book/"
-    val output = "./output/recommend/"
+    val output = "./output/recommend"
 //    val output1 = "./output/similarity/"
 //
 //    //去除首行
@@ -42,19 +42,20 @@ object ItemCF {
 //          .replace(")","")
 //          .replace("(","")
 //      }.saveAsTextFile(output1+2)
-//    println(s"用戶推荐列表: ${recommd_rdd1.count()}")
+    println(s"用戶推荐列表: ${recommd_rdd1.count()}")
 //    recommd_rdd1.collect().foreach { UserRecomm =>
 //      println(UserRecomm.userid + ", " + UserRecomm.itemid + ", " + UserRecomm.pref)
 //    }
       println("保存文件数据")
-
       recommd_rdd1.map{data=>(data.userid,data.itemid,data.pref)
         .toString()
         .replace(")","")
         .replace("(","")
-      }.saveAsTextFile(output+2)
+      }.saveAsTextFile(output)
     println("保存文件成功")
+    println("写入数据库")
     new KeepData().keepData(recommd_rdd1)
+    println("写入数据库成功")
     }
 //  }
 }

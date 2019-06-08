@@ -20,7 +20,7 @@ public class BX_Books {
         this.Book_Count = book_Count;
     }
 
-    public static final Integer Page_Size = 24;
+    public static final Integer Page_Size = 12;
     public Double getGrade() {
         return this.Grade;
     }

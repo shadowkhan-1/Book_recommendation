@@ -17,7 +17,7 @@ class KeepData extends Serializable {
               try {
                 for (info <- x) {
                   pts.setInt(1, info.userid.toInt)
-                  pts.setString(2, info.itemid)
+                  pts.setString(2, info.itemid.replaceAll("\"",""))
                   pts.setDouble(3, info.pref)
                   pts.executeUpdate()          //插入数据库要进行pts.executeUpdate()等操作
                 }

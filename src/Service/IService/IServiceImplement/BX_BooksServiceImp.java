@@ -49,6 +49,19 @@ public class BX_BooksServiceImp implements IBX_BooksService {
     }
 
     @Override
+    public List<BX_Books> findrecommend(Integer User_ID) throws Exception {
+        try{
+            return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindRecommend(User_ID);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
     public boolean insert(BX_Books vo) throws Exception {
         return false;
     }

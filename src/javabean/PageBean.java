@@ -5,12 +5,21 @@ import table.BX_Books;
 import java.util.List;
 
 public class PageBean {
-    private Integer pagesize = 24;
+    private Integer pagesize = 12;
     private Integer totalbook;
     private Integer totalpages;
     private Integer pages;
     private List<BX_Books> list;
     private List<BX_Books> book_list;
+    private List<BX_Books> recommend;
+
+    public List<BX_Books> getRecommend() {
+        return this.recommend;
+    }
+
+    public void setRecommend(final List<BX_Books> recommend) {
+        this.recommend = recommend;
+    }
 
     public List<BX_Books> getBook_list() {
         return this.book_list;

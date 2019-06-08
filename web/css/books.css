@@ -30,14 +30,14 @@ body {  padding-top: 70px; padding-bottom: 70px;}
     border:0px none;
 }
 .favorite_left{
-    width: 80%;
+    width: 50%;
     float: left;
-    border: 0px none;
+    border: 1px solid#ed4259;
 }
 .favorite{
-    width: 20%;
+    width: 50%;
     float: left;
-    border: 0px none;
+    border: 1px solid#28ff46;
 }
 .list-group-item:first-child {
     border-top-left-radius: 4px;
@@ -100,6 +100,10 @@ body {  padding-top: 70px; padding-bottom: 70px;}
     padding: 0 4px 0 2px;
     height: 20px;
     background: #ed4259;
+}
+.carousel-inner > .item > img {
+    width:100%; /* Or try to use important */
+    height:auto;
 }
 
 /*.book_grade{*/

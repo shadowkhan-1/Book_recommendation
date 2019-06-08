@@ -17,6 +17,39 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /**{margin:0;padding:0;list-style:none;}*/
+        .lunbo_ul li img{
+            width:50%;
+            height: 160px;
+            display:block;
+            list-style: none;
+        }
+        .box{width:100%;height:160px;margin:0px auto 0;border:1px solid red;position: relative;overflow:hidden;list-style: none;}
+        .box ul{position: absolute;width:100%;height:160px;left:0;top:0;
+            -moz-animation: move 4s linear 0s infinite;
+            list-style: none;
+        }
+        .box ul:hover{
+            -moz-animation-play-state: paused;
+            list-style: none;
+        }
+        .box ul li{
+            width: 100px;
+            height: 160px;
+            float:left;
+            list-style: none;
+        }
+        /* 定义一个动画 */
+        @-moz-keyframes move{
+            from{
+                left:0;
+            }
+            to{
+                left:-100px;
+            }
+        }
+    </style>
     <script type="text/javascript">
         function sendFavorite(ISBN){
             var test = $("[name='favorite']");
@@ -218,7 +251,7 @@
         String big_image_href = books.getImage_URL_L();
     %>
 <%--//    大屏幕放3张略缩图，pc端放4张，平板和手机放6张 --%>
-    <div class="col-md-3 col-xs-3">
+    <div class="col-md-4 col-xs-4">
 <%--        <div class="thumbnail">--%>
             <div class="thumbnail book_info_left">
             <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
@@ -238,8 +271,41 @@
     <%} %>
     </div>
     </div>
-    <div class="div_right"></div>
-<form action="getbook.action">
+    <div class="div_right">
+        <div class="box">
+            <ul>
+                <%
+                    List<BX_Books> recommend = pagebean.getRecommend();
+                    for(int i=0;i<2;i++){
+                        String author_href = "https://www.baidu.com/s?wd="+recommend.get(i).getBook_Author().replace(" ","+")+"&ie=UTF-8";
+                        String title_href = "https://www.baidu.com/s?wd="+recommend.get(i).getBook_Title().replace(" ","+")+"&ie=UTF-8";
+                        String big_image_href = recommend.get(i).getImage_URL_L();
+                    %>
+                <li><img src=<%=recommend.get(i).getImage_URL_M()%> alt=""></li>
+                <%}%>
+            </ul>
+        </div>
+            </div>
+        </div>
+<%--        <div class="col-xs-8">--%>
+<%--            &lt;%&ndash;        <div class="thumbnail">&ndash;%&gt;--%>
+<%--            <div class="thumbnail book_info_left">--%>
+<%--                <a href=<%=big_image_href%> target="_blank"><img src=<%=recm.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>--%>
+<%--            </div>--%>
+<%--            <div class="thumbnail book_info_right">--%>
+<%--                <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=recm.getBook_Title()%></a></h4>--%>
+<%--                <p style="color:#28ff46;">--%>
+<%--                    <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=recm.getBook_Author()%><br></a></span>--%>
+<%--                    <span class="book_info">出版社：<%=recm.getPublisher()%></span><br>--%>
+<%--                    出版日期:<%=recm.getYear_Of_Publication()%>--%>
+<%--                </p>--%>
+<%--                <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite('<%=recm.getISBN()%>')"><span class="glyphicon glyphicon-heart"></span></a>  <!--用''来防止去除数据型字符型前面的0-->--%>
+<%--            </div>--%>
+<%--            &lt;%&ndash;        </div>&ndash;%&gt;--%>
+<%--        </div>--%>
+
+    </div>
+<form action="getbook.action?userbean=<%=userbean%>" method="post">
     <nav style="text-align: center">
     <ul class="pagination">
         <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>

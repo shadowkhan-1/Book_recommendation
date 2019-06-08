@@ -131,7 +131,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 "Book_Title," +
                 "Book_Author," +
                 "Year_Of_Publication," +
-                "Publisher,Image_URL_M,Image_URL_L, " +
+                "Publisher,Image_URL_M,Image_URL_L " +
                 "from BX_Books where ISBN " +
                 "in(select ISBN from recommend where User_ID = ?)";
         pts = conn.prepareStatement(sql);
