@@ -147,7 +147,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
             vo.setPublisher(rs.getString(5));
             vo.setImage_URL_M(rs.getString(6));
             vo.setImage_URL_L(rs.getString(7));
-            all.add(vo)
+            all.add(vo);
         }
         return all;
     }
