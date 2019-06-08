@@ -7,28 +7,30 @@ import java.sql.{Connection, PreparedStatement, SQLException}
 import connection.DatabaseConnection
 class KeepData extends Serializable {
       def keepData(userRecomm: RDD[UserRecomm]):Unit = {
-      @transient
-      val dbc = new DatabaseConnection()
-      @transient
-      val conn:Connection = dbc.getConnection()
-      try{
-            val sql = "insert into table recommend(User_ID,ISBN,pref) values(?,?,?)"
             userRecomm.foreachPartition(x=> {
-                  for (info <- x) {
-                        val pts:PreparedStatement = conn.prepareStatement(sql)
-                        pts.setInt(1,info.userid.toInt)
-                        pts.setString(2,info.itemid.replaceAll("\"",""))
-                        pts.setDouble(3,info.pref)
-                  }
+              // foreachPartition把rdd转成iterater,可以进行遍历
+              //尽量把成员变量写在map,fitter,foreachPartition,foreach里面，防止不能序列化问题
+              val dbc = new DatabaseConnection()
+              val conn: Connection = dbc.getConnection()
+              val sql = "insert into recommend(User_ID,ISBN,pref) values(?,?,?)"
+              val pts: PreparedStatement = conn.prepareStatement(sql)
+              try {
+                for (info <- x) {
+                  pts.setInt(1, info.userid.toInt)
+                  pts.setString(2, info.itemid)
+                  pts.setDouble(3, info.pref)
+                  pts.executeUpdate()          //插入数据库要进行pts.executeUpdate()等操作
+                }
+              }
+              catch{
+                case e:SQLException => e.printStackTrace()
+              }
+              finally{
+                println("存入结束")
+                conn.close()
+              }
             }
             )
       }
-      catch{
-      case e:SQLException => e.printStackTrace()
-      }
-      finally{
-            conn.close()
-      }
 
-      }
 }

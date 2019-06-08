@@ -54,6 +54,7 @@ object ItemCF {
         .replace("(","")
       }.saveAsTextFile(output+2)
     println("保存文件成功")
+    new KeepData().keepData(recommd_rdd1)
     }
 //  }
 }

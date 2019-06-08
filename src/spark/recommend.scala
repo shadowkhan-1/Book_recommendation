@@ -6,7 +6,7 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
 import table.BX_Books
 import org.apache.spark.sql.hive.HiveContext
-object test1 {
+object recommend {
   def main(args: Array[String]): Unit = {
       val conf = new SparkConf().setAppName("test").setMaster("local")
       val sc = new SparkContext(conf)
@@ -19,10 +19,10 @@ object test1 {
 //        .option("delimiter",";")
 //        .load("./input/BX-Book-Ratings.csv")
 //      df.show(5)
-      val file  = sc.textFile("./output/recommend/2/part-00000")
+      val file  = sc.textFile("./output/recommend/2/recommend.csv")
 //      val header = file.first()
-      val userRecommend = file.map{x=>val line = x.split(";");(UserRecomm(line(0),line(1),line(2).toDouble))}
+      val userRecommend = file.map{x=>val line = x.split(",");((UserRecomm(line(0),line(1).replaceAll("\"",""),line(2).toDouble)))}
+      userRecommend.take(10).foreach(x=>println(x.userid,x.itemid,x.pref))
       new KeepData().keepData(userRecommend)
-    //      rating.take(10).foreach(x=>println(x._1,x._2.replaceAll("\"","").hashCode(),x._3))
   }
 }
