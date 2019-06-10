@@ -46,7 +46,7 @@ public class getfavorite extends ActionSupport {
             this.pages = Integer.parseInt(this.page);
         }
         pagebean.setList(ServiceFactory.getUser_FavoriteInterface().findbypage(this.username,this.pages));
-        pagebean.setRecommend(ServiceFactory.getBX_BooksServiceInterface().findrecommend(Integer.parseInt(username)));
+        pagebean.setRecommend(ServiceFactory.getBX_BooksServiceInterface().findrecommend(username));
         pagebean.setPages(this.pages);
         Integer totalbook = ServiceFactory.getUser_FavoriteInterface().findcount();
         pagebean.setTotalbook(totalbook);

@@ -26,5 +26,13 @@
         <action name="getfavorite" class="action.getfavorite" method="execute">
             <result name="success">/myfavorite.jsp</result>
         </action>
+        <action name="password" class="action.password" method="execute">
+            <result name="oldpassword" type="stream">
+                <param name="contentType">text/html;charset=utf8</param>
+                <param name="inputName">message</param>
+            </result>
+            <result name="newpassword">/success.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
 </struts>

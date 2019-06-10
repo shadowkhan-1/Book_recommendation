@@ -49,9 +49,9 @@ public class BX_BooksServiceImp implements IBX_BooksService {
     }
 
     @Override
-    public List<BX_Books> findrecommend(Integer User_ID) throws Exception {
+    public List<BX_Books> findrecommend(String username) throws Exception {
         try{
-            return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindRecommend(User_ID);
+            return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindRecommend(username);
         }
         catch (Exception e){
             throw e;

@@ -29,7 +29,7 @@ public class getbook extends ActionSupport {
         list = ServiceFactory.getBX_BooksServiceInterface().findbypage(pages);
         book_list = ServiceFactory.getBX_BooksServiceInterface().findbycount();
         Integer totalbook = ServiceFactory.getBX_BooksServiceInterface().findcount();
-        pagebean.setRecommend(ServiceFactory.getBX_BooksServiceInterface().findrecommend(Integer.parseInt(userbean.getUsername())));
+        pagebean.setRecommend(ServiceFactory.getBX_BooksServiceInterface().findrecommend(userbean.getUsername()));
         pagebean.setList(list);
         pagebean.setTotalbook(totalbook);
         pagebean.setPages(pages);

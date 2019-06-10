@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="3; url=getbook" />
     <title>成功</title>
 </head>
 <body>
-you are success!
+密码修改成功！正在返回！
 </body>
 </html>

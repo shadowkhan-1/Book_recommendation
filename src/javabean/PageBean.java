@@ -5,7 +5,7 @@ import table.BX_Books;
 import java.util.List;
 
 public class PageBean {
-    private Integer pagesize = 12;
+    private Integer pagesize = 20;
     private Integer totalbook;
     private Integer totalpages;
     private Integer pages;

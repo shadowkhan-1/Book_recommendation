@@ -10,5 +10,5 @@ public interface IBX_BooksDAO extends DAO<String, BX_Books> {
     public List<BX_Books> FindByPage(Integer page) throws Exception;//分页查询
     public Integer FindCount() throws Exception;
     public List<BX_Books> FindByCount() throws Exception;
-    public List<BX_Books> FindRecommend(Integer User_ID) throws Exception;
+    public List<BX_Books> FindRecommend(String username) throws Exception;
 }

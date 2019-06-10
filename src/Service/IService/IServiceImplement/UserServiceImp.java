@@ -13,7 +13,6 @@ public class UserServiceImp implements IUserService {
     public boolean insert(user vo) throws Exception {
         try{
             if(DAOFactory.getUserIDAOInterface(dbc.getConnection()).Find(vo.getUsername())!=null){
-
                 return DAOFactory.getUserIDAOInterface(dbc.getConnection()).Create(vo);
             }
         }
@@ -28,7 +27,15 @@ public class UserServiceImp implements IUserService {
 
     @Override
     public boolean update(user vo) throws Exception {
-        return false;
+        try{
+                return DAOFactory.getUserIDAOInterface(dbc.getConnection()).Update(vo);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
     }
 
     @Override

@@ -17,39 +17,6 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style>
-        /**{margin:0;padding:0;list-style:none;}*/
-        .lunbo_ul li img{
-            width:50%;
-            height: 160px;
-            display:block;
-            list-style: none;
-        }
-        .box{width:100%;height:160px;margin:0px auto 0;border:1px solid red;position: relative;overflow:hidden;list-style: none;}
-        .box ul{position: absolute;width:100%;height:160px;left:0;top:0;
-            -moz-animation: move 4s linear 0s infinite;
-            list-style: none;
-        }
-        .box ul:hover{
-            -moz-animation-play-state: paused;
-            list-style: none;
-        }
-        .box ul li{
-            width: 100px;
-            height: 160px;
-            float:left;
-            list-style: none;
-        }
-        /* 定义一个动画 */
-        @-moz-keyframes move{
-            from{
-                left:0;
-            }
-            to{
-                left:-100px;
-            }
-        }
-    </style>
     <script type="text/javascript">
         function sendFavorite(ISBN){
             var test = $("[name='favorite']");
@@ -154,12 +121,12 @@
                                     <a href="getfavorite.action?pages=1&username=<%=userbean.getUsername()%>">我的收藏</a>
                                 </li>
                                 <li>
-                                    <a href="#">密码修改</a>
+                                    <a href="change_pwd.jsp">密码修改</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="#">Separated link</a>
+                                    <a href="index.jsp">退出</a>
                                 </li>
                             </ul>
                         </li>
@@ -272,20 +239,37 @@
     </div>
     </div>
     <div class="div_right">
-        <div class="box">
-            <ul>
-                <%
-                    List<BX_Books> recommend = pagebean.getRecommend();
-                    for(int i=0;i<2;i++){
-                        String author_href = "https://www.baidu.com/s?wd="+recommend.get(i).getBook_Author().replace(" ","+")+"&ie=UTF-8";
-                        String title_href = "https://www.baidu.com/s?wd="+recommend.get(i).getBook_Title().replace(" ","+")+"&ie=UTF-8";
-                        String big_image_href = recommend.get(i).getImage_URL_L();
-                    %>
-                <li><img src=<%=recommend.get(i).getImage_URL_M()%> alt=""></li>
-                <%}%>
-            </ul>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>
+                猜你喜欢
+            </h4>
         </div>
+        <%
+            List<BX_Books> recommend = pagebean.getRecommend();
+            for(BX_Books recm:recommend){
+                String author_href = "https://www.baidu.com/s?wd="+recm.getBook_Author().replace(" ","+")+"&ie=UTF-8";
+                String title_href = "https://www.baidu.com/s?wd="+recm.getBook_Title().replace(" ","+")+"&ie=UTF-8";
+                String big_image_href = recm.getImage_URL_L();
+        %>
+        <div class="col-md-5">
+            <%--        <div class="thumbnail">--%>
+            <div class="thumbnail book_info_left">
+                <a href=<%=big_image_href%> target="_blank"><img src=<%=recm.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>
             </div>
+            <div class="thumbnail book_info_right">
+                <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=recm.getBook_Title()%></a></h4>
+                <p style="color:#28ff46;">
+                    <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=recm.getBook_Author()%><br></a></span>
+                    <span class="book_info">出版社：<%=recm.getPublisher()%></span><br>
+                    出版日期:<%=recm.getYear_Of_Publication()%>
+                </p>
+                <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite('<%=recm.getISBN()%>')"><span class="glyphicon glyphicon-heart"></span></a>  <!--用''来防止去除数据型字符型前面的0-->
+            </div>
+            <%--        </div>--%>
+        </div>
+        <%}%>
+    </div>
         </div>
 <%--        <div class="col-xs-8">--%>
 <%--            &lt;%&ndash;        <div class="thumbnail">&ndash;%&gt;--%>

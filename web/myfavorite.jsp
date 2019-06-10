@@ -93,7 +93,7 @@
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" />
+                            <input type="text" class="form-control" placeholder="请输入关键字"/>
                         </div> <button type="submit" class="btn btn-default">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
@@ -110,12 +110,12 @@
                                     <a href="getfavorite.action?pages=1&username=<%=userbean.getUsername()%>">我的收藏</a>
                                 </li>
                                 <li>
-                                    <a href="#">密码修改</a>
+                                    <a href="change_pwd.jsp">密码修改</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="#">Separated link</a>
+                                    <a href="index.jsp">退出</a>
                                 </li>
                             </ul>
                         </li>
@@ -161,6 +161,12 @@
     </div>
 
     <div class="favorite">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>
+                猜你喜欢
+            </h4>
+        </div>
         <%
             List<BX_Books> recommend = pagebean.getRecommend();
             for(BX_Books recm:recommend){
@@ -168,7 +174,7 @@
                 String title_href = "https://www.baidu.com/s?wd="+recm.getBook_Title().replace(" ","+")+"&ie=UTF-8";
                 String big_image_href = recm.getImage_URL_L();
         %>
-        <div class="col-md-8">
+        <div class="col-md-5">
             <%--        <div class="thumbnail">--%>
             <div class="thumbnail book_info_left">
                 <a href=<%=big_image_href%> target="_blank"><img src=<%=recm.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>

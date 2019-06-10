@@ -6,6 +6,7 @@ import table.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAOImp implements IUserDAO {
@@ -38,7 +39,11 @@ public class UserDAOImp implements IUserDAO {
     }
 
     public boolean Update(user vo) throws Exception {
-        return false;
+        String sql = "update user set password=? where username like ?";
+        pts = conn.prepareStatement(sql);
+        pts.setString(1, vo.getPassword());
+        pts.setString(2, vo.getUsername());
+        return pts.executeUpdate()>0;
     }
 
     public List<user> FindAll() throws Exception {

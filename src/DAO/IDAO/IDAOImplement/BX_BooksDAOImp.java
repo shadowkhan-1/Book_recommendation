@@ -125,7 +125,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
     }
 
     @Override
-    public List<BX_Books> FindRecommend(Integer User_ID) throws Exception {
+    public List<BX_Books> FindRecommend(String username) throws Exception {
         String sql = "select " +
                 "ISBN," +
                 "Book_Title," +
@@ -135,7 +135,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 "from BX_Books where ISBN " +
                 "in(select ISBN from recommend where User_ID = ?)";
         pts = conn.prepareStatement(sql);
-        pts.setInt(1,User_ID);
+        pts.setString(1,username);
         List<BX_Books> all = new ArrayList<BX_Books>();
         ResultSet rs = pts.executeQuery();
         while (rs.next()){
