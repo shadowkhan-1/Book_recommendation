@@ -34,5 +34,8 @@
             <result name="newpassword">/success.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="search" class="action.search" method="execute">
+            <result name="success">/search.jsp</result>
+        </action>
     </package>
 </struts>

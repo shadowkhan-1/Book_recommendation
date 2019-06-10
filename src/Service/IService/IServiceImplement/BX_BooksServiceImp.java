@@ -3,6 +3,8 @@ package Service.IService.IServiceImplement;
 import Factory.DAOFactory;
 import Service.IService.IBX_BooksService;
 import connection.DatabaseConnection;
+import org.apache.derby.jdbc.EmbeddedXADataSource;
+import scala.util.parsing.combinator.testing.Str;
 import table.BX_Books;
 
 import java.util.List;
@@ -52,6 +54,19 @@ public class BX_BooksServiceImp implements IBX_BooksService {
     public List<BX_Books> findrecommend(String username) throws Exception {
         try{
             return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindRecommend(username);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        finally {
+            dbc.colse();
+        }
+    }
+
+    @Override
+    public List<BX_Books> findbykey(Integer page, List<String> columns, String key) throws Exception {
+        try{
+           return DAOFactory.getBX_BooksDAOInterface(dbc.getConnection()).FindByKey(page,columns,key);
         }
         catch (Exception e){
             throw e;

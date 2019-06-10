@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bootstrap 实例 - 一个简单的网页</title>
+<title>登录</title>
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>

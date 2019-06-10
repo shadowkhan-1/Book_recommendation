@@ -12,6 +12,7 @@ public class PageBean {
     private List<BX_Books> list;
     private List<BX_Books> book_list;
     private List<BX_Books> recommend;
+    private List<BX_Books> searche_book;
 
     public List<BX_Books> getRecommend() {
         return this.recommend;
@@ -62,5 +63,13 @@ public class PageBean {
     }
     public Integer getPagesize() {
         return this.pagesize;
+    }
+
+    public List<BX_Books> getSearche_book() {
+        return this.searche_book;
+    }
+
+    public void setSearche_book(final List<BX_Books> searche_book) {
+        this.searche_book = searche_book;
     }
 }

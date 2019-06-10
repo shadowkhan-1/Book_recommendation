@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 //select BX_Books.ISBN,grade from BX_Books left join (select ISBN,avg(Book_Rating) as grade from BX_Book_Ratings group by ISBN order by grade desc) as t1 on BX_Books.ISBN=t1.ISBN limit 10;
 
 public class BX_BooksDAOImp implements IBX_BooksDAO {
@@ -55,10 +56,52 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
     public List<BX_Books> FindAll() throws Exception {
         return null;
     }
+    /*
+        判断是否为数字型字符串的方法
+     */
+    private boolean isInteger(String str) {
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
+    }
 
     @Override
-    public BX_Books FindByKey(String column, String key) throws Exception {
-        return null;
+    public List<BX_Books> FindByKey(Integer page,List<String> columns, String key) throws Exception {
+        List<BX_Books> all = new ArrayList<BX_Books>();
+        String tail = "where ? like %?% limit ?,?";
+        for(String column:columns) {
+            String sql = "select ISBN," +
+                    "Book_Title," +
+                    "Book_Author," +
+                    "Year_Of_Publication," +
+                    "Publisher," +
+                    "Image_URL_S,Image_URL_M,Image_URL_L,count(*) from BX_Books ";
+            if(isInteger(key)) {
+                sql += "where ? = ? limit ?,?";
+            }
+            else {
+                sql += tail;
+            }
+            pts = conn.prepareStatement(sql);
+            pts.setString(1, column);
+            pts.setString(2, key);
+            pts.setInt(3, (page - 1) * BX_Books.Page_Size);
+            pts.setInt(4, BX_Books.Page_Size);
+            ResultSet rs = pts.executeQuery();
+            while (rs.next()) {
+                BX_Books vo = new BX_Books();
+                vo.setISBN(rs.getString(1));
+                vo.setBook_Title(rs.getString(2));
+                vo.setBook_Author(rs.getString(3));
+                vo.setYear_Of_Publication(rs.getInt(4));
+                vo.setPublisher(rs.getString(5));
+                vo.setImage_URL_S(rs.getString(6));
+                vo.setImage_URL_M(rs.getString(7));
+                vo.setImage_URL_L(rs.getString(8));
+                vo.setBook_Count(rs.getInt(9));
+                all.add(vo);
+            }
+        }
+        return all;
     }
 
     @Override
@@ -131,7 +174,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 "Book_Title," +
                 "Book_Author," +
                 "Year_Of_Publication," +
-                "Publisher,Image_URL_M,Image_URL_L " +
+                "Publisher,Image_URL_S,Image_URL_M,Image_URL_L " +
                 "from BX_Books where ISBN " +
                 "in(select ISBN from recommend where User_ID = ?)";
         pts = conn.prepareStatement(sql);
@@ -145,8 +188,9 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
             vo.setBook_Author(rs.getString(3));
             vo.setYear_Of_Publication(rs.getInt(4));
             vo.setPublisher(rs.getString(5));
-            vo.setImage_URL_M(rs.getString(6));
-            vo.setImage_URL_L(rs.getString(7));
+            vo.setImage_URL_S(rs.getString(6));
+            vo.setImage_URL_M(rs.getString(7));
+            vo.setImage_URL_L(rs.getString(8));
             all.add(vo);
         }
         return all;

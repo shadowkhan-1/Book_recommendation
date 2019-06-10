@@ -10,4 +10,5 @@ public interface IBX_BooksService extends Service<String, BX_Books>{
     public List<BX_Books> findbypage(Integer page) throws Exception;
     public List<BX_Books> findbycount() throws Exception;
     public List<BX_Books> findrecommend(String username) throws Exception;
+    public List<BX_Books> findbykey(Integer page,List<String> columns,String key) throws Exception;
 }

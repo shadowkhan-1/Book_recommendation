@@ -81,9 +81,9 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
+                <form action="search.action" class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="请输入关键字" />
+                        <input name="search_name" type="text" class="form-control" placeholder="请输入关键字" />
                     </div> <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
