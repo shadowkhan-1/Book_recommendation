@@ -70,10 +70,12 @@ class RecommendedItem extends Serializable{
     //   3 矩阵计算——用户：元素累加求和
     val rdd_app1_R4 = rdd_app1_R3.reduceByKey((x, y) => x + y)
     //   4 矩阵计算——用户：对结果过滤已有I2
-    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1))).
-      filter(f => f._2._2.isEmpty).map(f => (f._1._1, (f._1._2, f._2._1)))
+//    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1))).
+//      filter(f => f._2._2.isEmpty).map(f => (f._1._1, (f._1._2, f._2._1)))
     //   5 矩阵计算——用户：用户对结果排序，过滤
-    val rdd_app1_R6 = rdd_app1_R5.map(f => (f._1, f._2._1, f._2._2)).
+//    val rdd_app1_R6 = rdd_app1_R5.map(f => (f._1, f._2._1, f._2._2)).
+//      sortBy(f => (f._1, f._3))
+    val rdd_app1_R6 = rdd_app1_R4.map(f => (f._1._1, f._1._2,f._2)).
       sortBy(f => (f._1, f._3))
     rdd_app1_R6.map(f => UserRecomm(f._1, f._2, f._3))
   }
