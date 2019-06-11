@@ -47,20 +47,21 @@ public class search extends ActionSupport {
         }
         PageBean pagebean = new PageBean();
         ActionContext context= ActionContext.getContext();
+
         List<BX_Books> list = ServiceFactory.getBX_BooksServiceInterface().findbykey(getPage(),this.search_column,getSearch_name());
-        Integer totalpage = 0;
+        Integer totalbook = 0;
         for(BX_Books book:list){
-              totalpage+=book.getBook_Count();
+              totalbook+=book.getBook_Count();
         }
-        pagebean.setSearche_book(list);
-        System.out.println(list.size());
+        pagebean.setSearch_book(list);
 //        for(BX_Books book:list){
 //            System.out.println(book.getISBN());
 //        }
         pagebean.setPages(getPage());
-        pagebean.setTotalbook(totalpage);
-        pagebean.setTotalpages(totalpage/pagebean.getPagesize());
+        pagebean.setTotalbook(totalbook);
+        pagebean.setTotalpages(totalbook/pagebean.getPagesize());
         context.put("pagebean",pagebean);
+        context.put("search_name",getSearch_name());
         return "success";
     }
 }

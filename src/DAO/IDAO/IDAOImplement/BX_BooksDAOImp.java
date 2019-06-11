@@ -67,25 +67,18 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
     @Override
     public List<BX_Books> FindByKey(Integer page,List<String> columns, String key) throws Exception {
         List<BX_Books> all = new ArrayList<BX_Books>();
-        String tail = "where ? like %?% limit ?,?";
         for(String column:columns) {
             String sql = "select ISBN," +
                     "Book_Title," +
                     "Book_Author," +
                     "Year_Of_Publication," +
                     "Publisher," +
-                    "Image_URL_S,Image_URL_M,Image_URL_L,count(*) from BX_Books ";
-            if(isInteger(key)) {
-                sql += "where ? = ? limit ?,?";
-            }
-            else {
-                sql += tail;
-            }
+                    "Image_URL_S,Image_URL_M,Image_URL_L,1 from BX_Books "+
+                    "where "+column+" like ? limit ?,?";      //列不能用点位符，会有'',要用字符串拼接1,要用1来计数，不能用count来
             pts = conn.prepareStatement(sql);
-            pts.setString(1, column);
-            pts.setString(2, key);
-            pts.setInt(3, (page - 1) * BX_Books.Page_Size);
-            pts.setInt(4, BX_Books.Page_Size);
+            pts.setString(1, "%"+key+"%");  //%%要用pts.setString()添加
+            pts.setInt(2, (page - 1) * BX_Books.Page_Size);
+            pts.setInt(3, BX_Books.Page_Size);
             ResultSet rs = pts.executeQuery();
             while (rs.next()) {
                 BX_Books vo = new BX_Books();

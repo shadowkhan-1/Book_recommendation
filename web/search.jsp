@@ -93,9 +93,13 @@
                             </ul>
                         </li>
                     </ul>
+                    <%
+                        String search_name = (String)request.getAttribute("search_name");
+                    %>
                     <form action="search.action" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input name="search_name" type="text" class="form-control" placeholder="请输入关键字" />
+<%--                            input的value可以直接把值放进去--%>
+                            <input id="search_name" name="search_name" type="text" class="form-control" placeholder="请输入关键字" value="<%=search_name%>"/>
                         </div> <button type="submit" class="btn btn-default">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
@@ -135,7 +139,7 @@
 <%--    <div class="div_center">--%>
         <div class="row">
             <%
-                List<BX_Books> list=pagebean.getSearche_book();
+                List<BX_Books> list=pagebean.getSearch_book();
                 if(list.isEmpty()){%>
                         <h3>没有找到相关信息</h3>
                 <%}
@@ -149,7 +153,7 @@
             <div class="col-md-4 col-xs-4">
                 <%--        <div class="thumbnail">--%>
                 <div class="thumbnail book_info_left">
-                    <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"><span><%=books.getGrade()%></span></a>
+                    <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>
                 </div>
                 <div class="thumbnail book_info_right">
                     <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
@@ -169,14 +173,14 @@
 </div>
 
 </div>
-<form action="search.action?userbean=<%=userbean%>" method="post">
+<form action="search.action?userbean=<%=userbean%>&search_name=<%=search_name%>" method="post">
     <nav style="text-align: center">
         <ul class="pagination">
             <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
-            <li><a href="search?pages=1">首页</a></li>
-            <li><a href="search?pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
-            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
-            <li><a href="search?pages=<%=totalpages%>">最后一页</a></li>
+            <li><a href="search?pages=1&search_name=<%=search_name%>">首页</a></li>
+            <li><a href="search?pages=<%=(pages<=1)?pages=1:(pages-1) %>&search_name=<%=search_name%>"> 上一页</a></li>
+            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>&search_name=<%=search_name%>"> 下一页</a></li>
+            <li><a href="search?pages=<%=totalpages%>&search_name=<%=search_name%>">最后一页</a></li>
             <li>转到第:<input type="text" id="page"name="page" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
         </ul>
     </nav>
