@@ -45,7 +45,7 @@ object userBasedModel {
     val user_rdd12=user_rdd11.map(f=> (f._1, f._2, (f._3 / sqrt(f._4 * f._5)) ))
     user_rdd12.foreach(x=>println(x._2,x._1,x._3))
 //    val user_rdd = rawRatings.map(x=>(x._1,x._2)).sortByKey().cache()
-//    val user_rdd1 = user_rdd.join(user_rdd).map(data=>(data._2,1)).reduceByKey(_+_)
+//    val user_rdd1 = user_rdd.join(user_rdd).map(data=>(data._2,1_5000)).reduceByKey(_+_)
 //    val user_rdd2 = user_rdd1.filter(x=>x._1._1==x._1._2)
 //    val user_rdd3 = user_rdd1.filter(x=>x._1._1!=x._1._2)
 //    val user_rdd4 = user_rdd3.map(x=>(x._1._1,(x._1._1,x._1._2,x._2))).join(user_rdd2.map(x=>(x._1._1,x._2)))

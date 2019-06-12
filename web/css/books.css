@@ -113,11 +113,11 @@ body {  padding-top: 70px; padding-bottom: 70px;}
 /*}*/
 /*.class1.class2（中间没有空格）匹配的是同时拥有class1和class2的元素*/
 
-/*1 <div class="class1 class2">...</div>*/
+/*1_5000 <div class="class1 class2">...</div>*/
 
 /*                                  .class1 .class2匹配的是父节点有.class1，子节点有.class2的元素*/
 
-/*1 <div class="class1">*/
+/*1_5000 <div class="class1">*/
 /*2     <div class="class2">*/
 /*3         ...*/
 /*4     </div>*/

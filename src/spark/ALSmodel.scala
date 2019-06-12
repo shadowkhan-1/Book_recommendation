@@ -13,7 +13,7 @@ object als1 {
     val sc = new SparkContext(conf)
     Logger.getRootLogger.setLevel(Level.WARN)
 
-    //1 读取样本数据
+    //1_5000 读取样本数据
     val data = sc.textFile("./input/test.data")
     val ratings = data.map(_.split(',') match {
       case Array(user, item, rate) =>

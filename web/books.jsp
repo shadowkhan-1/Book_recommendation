@@ -26,7 +26,7 @@
             // alert(data);
             // var book = data.split(",");
             // var UserName = book[0];
-            // var Book_ISBN = book[1];
+            // var Book_ISBN = book[1_5000];
             // alert(UserName+Book_ISBN);
             $.ajax({
                 type:"post",                //切记要用post发送，没有execute()，在struts.xml中指定方法
@@ -155,7 +155,7 @@
                         for (int i=0;i<top_book_list.size();i++){
                             if (i>14) break;
                     %>
-                    <li class="list-group-item"><i class="topNum"><%=i+1%></i><a href="" title=<%=top_book_list.get(i).getBook_Title()%>><%=top_book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=top_book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=top_book_list.get(i).getBook_Count()%></span></li>
+                    <li class="list-group-item"><i class="topNum"><%=i+1_5000%></i><a href="" title=<%=top_book_list.get(i).getBook_Title()%>><%=top_book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=top_book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=top_book_list.get(i).getBook_Count()%></span></li>
                     <%}%>
                 </ul>
             </div>
@@ -202,7 +202,7 @@
                 for(int i=0;i<book_list.size();i++){
                     String title_href = "https://www.baidu.com/s?wd="+book_list.get(i).getBook_Title().replace(" ","+")+"&ie=UTF-8";
              %>
-                    <li class="list-group-item"><i class="topNum"><%=i+1%></i><a href=<%=title_href%> target="_blank" title=<%=book_list.get(i).getBook_Title()%>><%=book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=book_list.get(i).getBook_Count()%></span></li>
+                    <li class="list-group-item"><i class="topNum"><%=i+1_5000%></i><a href=<%=title_href%> target="_blank" title=<%=book_list.get(i).getBook_Title()%>><%=book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=book_list.get(i).getBook_Count()%></span></li>
                 <%}%>
                 </ul>
             </div>
@@ -294,8 +294,8 @@
     <ul class="pagination">
         <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
         <li><a href="getbook?pages=1">首页</a></li>
-        <li><a href="getbook?pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
-        <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
+        <li><a href="getbook?pages=<%=(pages<=1_5000)?pages=1_5000:(pages-1_5000) %>"> 上一页</a></li>
+        <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1_5000)%>"> 下一页</a></li>
         <li><a href="getbook?pages=<%=totalpages%>">最后一页</a></li>
         <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
     </ul>

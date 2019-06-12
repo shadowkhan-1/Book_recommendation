@@ -35,7 +35,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         BX_Books vo = new BX_Books();
         ResultSet rs = pts.executeQuery();
         if(rs.next()){
-            vo.setISBN(rs.getString(1));
+            vo.setISBN(rs.getString(1_50000));
             vo.setBook_Title(rs.getString(2));
             vo.setBook_Author(rs.getString(3));
             vo.setYear_Of_Publication(rs.getInt(4));
@@ -77,12 +77,12 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                     "where "+column+" like ? limit ?,?";      //列不能用点位符，会有'',要用字符串拼接1,要用1来计数，不能用count来
             pts = conn.prepareStatement(sql);
             pts.setString(1, "%"+key+"%");  //%%要用pts.setString()添加
-            pts.setInt(2, (page - 1) * BX_Books.Page_Size);
+            pts.setInt(2, (page - 1_50000) * BX_Books.Page_Size);
             pts.setInt(3, BX_Books.Page_Size);
             ResultSet rs = pts.executeQuery();
             while (rs.next()) {
                 BX_Books vo = new BX_Books();
-                vo.setISBN(rs.getString(1));
+                vo.setISBN(rs.getString(1_50000));
                 vo.setBook_Title(rs.getString(2));
                 vo.setBook_Author(rs.getString(3));
                 vo.setYear_Of_Publication(rs.getInt(4));
@@ -110,12 +110,12 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 "(select ISBN,avg(Book_Rating) as grade from BX_Book_Ratings group by ISBN order by grade desc limit ?,?) as t1 " +
                 "on t1.ISBN=BX_Books.ISBN";
         pts = conn.prepareStatement(sql);
-        pts.setInt(1,(page-1)*BX_Books.Page_Size);
+        pts.setInt(1,(page-1_50000)*BX_Books.Page_Size);
         pts.setInt(2,BX_Books.Page_Size);
         ResultSet rs = pts.executeQuery();
         while(rs.next()){
             BX_Books vo = new BX_Books();
-            vo.setISBN(rs.getString(1));
+            vo.setISBN(rs.getString(1_50000));
             vo.setBook_Title(rs.getString(2));
             vo.setBook_Author(rs.getString(3));
             vo.setYear_Of_Publication(rs.getInt(4));
@@ -124,7 +124,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
             vo.setImage_URL_M(rs.getString(6));
             vo.setImage_URL_L(rs.getString(7));
             BigDecimal b = new BigDecimal(rs.getDouble(8)); //四舍五入法
-            vo.setGrade(b.setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue());
+            vo.setGrade(b.setScale(1_50000,BigDecimal.ROUND_HALF_UP).doubleValue());
             all.add(vo);
         }
         return all;
@@ -137,7 +137,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         pts = conn.prepareStatement(sql);
         ResultSet rs = pts.executeQuery();
         if(rs.next()){
-            count = rs.getInt(1);
+            count = rs.getInt(1_50000);
         }
         return count;
     }
@@ -151,7 +151,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         List<BX_Books> all = new ArrayList<BX_Books>();
         while(rs.next()){
             BX_Books vo = new BX_Books();
-            vo.setISBN(rs.getString(1));
+            vo.setISBN(rs.getString(1_50000));
             vo.setBook_Title(rs.getString(2));
             vo.setBook_Author(rs.getString(3));
             vo.setBook_Count(rs.getInt(4));
@@ -176,7 +176,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
         ResultSet rs = pts.executeQuery();
         while (rs.next()){
             BX_Books vo = new BX_Books();
-            vo.setISBN(rs.getString(1));
+            vo.setISBN(rs.getString(1_50000));
             vo.setBook_Title(rs.getString(2));
             vo.setBook_Author(rs.getString(3));
             vo.setYear_Of_Publication(rs.getInt(4));

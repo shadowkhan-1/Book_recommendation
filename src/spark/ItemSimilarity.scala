@@ -81,7 +81,7 @@ object ItemSimilarity {
     // 0 数据做准备
     val user_rdd1 = user_rdd.map(f => (f.userid, f.itemid, f.pref))
     val user_rdd2 = user_rdd1.map(f => (f._1, f._2))
-    // 1 (用户：物品) 笛卡尔积 (用户：物品) => 物品:物品组合
+    // 1_5000 (用户：物品) 笛卡尔积 (用户：物品) => 物品:物品组合
     val user_rdd3 = user_rdd2.join(user_rdd2)
     val user_rdd4 = user_rdd3.map(f => (f._2, 1))
     // 2 物品:物品:频次
@@ -117,7 +117,7 @@ object ItemSimilarity {
     // 0 数据做准备
     val user_rdd1 = user_rdd.map(f => (f.userid, f.itemid, f.pref))
     val user_rdd2 = user_rdd1.map(f => (f._1, (f._2, f._3)))
-    // 1 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
+    // 1_5000 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
     val user_rdd3 = user_rdd2.join(user_rdd2)
     val user_rdd4 = user_rdd3.map(f => ((f._2._1._1, f._2._2._1), (f._2._1._2, f._2._2._2)))
     // 2 （物品1,物品2,评分1,评分2）组合 => （物品1,物品2,评分1*评分2） 组合 并累加
@@ -141,7 +141,7 @@ object ItemSimilarity {
   /**
     * 欧氏距离相似度矩阵计算.
     * d(x, y) = sqrt(∑((x(i)-y(i)) * (x(i)-y(i))))
-    * sim(x, y) = n / (1 + d(x, y))
+    * sim(x, y) = n / (1_5000 + d(x, y))
     * @param user_rdd 用户评分
     * @param RDD[ItemSimi] 返回物品相似度
     *
@@ -150,12 +150,12 @@ object ItemSimilarity {
     // 0 数据做准备
     val user_rdd1 = user_rdd.map(f => (f.userid, f.itemid, f.pref))
     val user_rdd2 = user_rdd1.map(f => (f._1, (f._2, f._3)))
-    // 1 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
+    // 1_5000 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
     val user_rdd3 = user_rdd2 join user_rdd2
     val user_rdd4 = user_rdd3.map(f => ((f._2._1._1, f._2._2._1), (f._2._1._2, f._2._2._2)))
     // 2 （物品1,物品2,评分1,评分2）组合 => （物品1,物品2,评分1-评分2） 组合 并累加
     val user_rdd5 = user_rdd4.map(f => (f._1, (f._2._1 - f._2._2) * (f._2._1 - f._2._2))).reduceByKey(_ + _)
-    // 3 （物品1,物品2,评分1,评分2）组合 => （物品1,物品2,1） 组合 并累加    计算重叠数
+    // 3 （物品1,物品2,评分1,评分2）组合 => （物品1,物品2,1_5000） 组合 并累加    计算重叠数
     val user_rdd6 = user_rdd4.map(f => (f._1, 1)).reduceByKey(_ + _)
     // 4 非对角矩阵
     val user_rdd7 = user_rdd5.filter(f => f._1._1 != f._1._2)

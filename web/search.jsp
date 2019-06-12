@@ -26,7 +26,7 @@
             // alert(data);
             // var book = data.split(",");
             // var UserName = book[0];
-            // var Book_ISBN = book[1];
+            // var Book_ISBN = book[1_5000];
             // alert(UserName+Book_ISBN);
             $.ajax({
                 type:"post",                //切记要用post发送，没有execute()，在struts.xml中指定方法
@@ -178,8 +178,8 @@
         <ul class="pagination">
             <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
             <li><a href="search?pages=1&search_name=<%=search_name%>">首页</a></li>
-            <li><a href="search?pages=<%=(pages<=1)?pages=1:(pages-1) %>&search_name=<%=search_name%>"> 上一页</a></li>
-            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>&search_name=<%=search_name%>"> 下一页</a></li>
+            <li><a href="search?pages=<%=(pages<=1_5000)?pages=1_5000:(pages-1_5000) %>&search_name=<%=search_name%>"> 上一页</a></li>
+            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1_5000)%>&search_name=<%=search_name%>"> 下一页</a></li>
             <li><a href="search?pages=<%=totalpages%>&search_name=<%=search_name%>">最后一页</a></li>
             <li>转到第:<input type="text" id="page"name="page" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
         </ul>

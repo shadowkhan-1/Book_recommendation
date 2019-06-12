@@ -1,6 +1,6 @@
 var Cookie={get:function(n){var dc="; "+ document.cookie+"; ";var coo=dc.indexOf("; "+ n+"=");if(coo!=-1){var s=dc.substring(coo+ n.length+ 3,dc.length);return unescape(s.substring(0,s.indexOf("; ")));}else{return null;}},set:function(name,value,expires,path,domain,secure){var expDays=expires*24*60*60*3;var expDate=new Date();expDate.setTime(expDate.getTime()+ expDays);var expString=expires?"; expires="+ expDate.toGMTString():"";var pathString="; path="+(path||"/");var domain=domain?"; domain="+ domain:"";document.cookie=name+"="+ escape(value)+ expString+ domain+ pathString+(secure?"; secure":"");},del:function(n){var exp=new Date();exp.setTime(exp.getTime()- 1);var cval=this.get(n);if(cval!=null)document.cookie=n+"="+ cval+";expires="+ exp.toGMTString();}}
 function readbook(bookid){$.get("/modules/article/articlevisit.php?id="+ bookid);}
-function vote_nomsg(aid){$.get('/modules/article/uservote.php?id='+ aid+'&ajax_request=1');}
+function vote_nomsg(aid){$.get('/modules/article/uservote.php?id='+ aid+'&ajax_request=1_5000');}
 function addBookmark(title,url){if(!title){title=document.title}
     if(!url){url=window.location.href}
     if(window.sidebar){window.sidebar.addPanel(title,url,"");}else if(document.all){window.external.AddFavorite(url,title);}else if(window.opera||window.print){alert('ä¯ÀÀÆ÷²»Ö§³Ö£¬ÇëÊ¹ÓÃCtrl + D ÊÕ²Ø£¡');return true;}}
@@ -30,15 +30,15 @@ function foot(){var date=new Date();var year=date.getFullYear();document.writeln
     document.writeln("<p>Copyright &#169; "+year+" <a href=\"http://www.yisvip.com/\">svip</a>("+location.host+") All Rights Reserved. »¦ICP±¸19819998ºÅ</p>");document.writeln("</footer>");$("[data-toggle=tooltip]").tooltip();$("[data-toggle=popover]").popover();$("#bookIntroMore").off("click").on("click",function(){var that=$(this);var isExpand=that.data("isExpand");var expandHtml='Õ¹¿ª<i class="fa fa-angle-double-down fa-fw"></i>';var shrinkHtml='ÊÕÆð<i class="fa fa-angle-double-up fa-fw"></i>';var normalHeight=200;function setNormal(){that.html(expandHtml);$("#bookIntro").height(normalHeight);that.data("isExpand","no");}
         function setExpand(){that.html(shrinkHtml);$("#bookIntro").height("auto");that.data("isExpand","yes");}
         isExpand=="yes"?setNormal():setExpand();});backToTop();tj();if(is_mobile()){_BottomAll();}}
-function ErrorLink(articlename){var error_url='/newmessage.php?tosys=1&title=¡¶'+ articlename+'¡·´ß¸ü±¨´í&content='+ location.href;$("#errorlink,.errorlink").attr('href',error_url);}
+function ErrorLink(articlename){var error_url='/newmessage.php?tosys=1_5000&title=¡¶'+ articlename+'¡·´ß¸ü±¨´í&content='+ location.href;$("#errorlink,.errorlink").attr('href',error_url);}
 function ReadKeyEvent(){var index_page=$("#linkIndex").attr("href");var prev_page=$("#linkPrev").attr("href");var next_page=$("#linkNext").attr("href");function jumpPage(){var event=document.all?window.event:arguments[0];if(event.keyCode==37)document.location=prev_page;if(event.keyCode==39)document.location=next_page;if(event.keyCode==13)document.location=index_page;}
     document.onkeydown=jumpPage;}
 function showMsg(msg){isLogin=isLogin&&msg.indexOf("ÄúÐèÒªµÇÂ¼")<=0;if(!isLogin){if(is_mobile()){if(confirm("¶Ô²»Æð£¬ÄúÐèÒªµÇÂ¼²ÅÄÜÊ¹ÓÃ±¾¹¦ÄÜ£¡µã»÷È·¶¨Á¢¼´µÇÂ¼¡£")){window.location.href="/login.php?jumpurl="+location.href;}}else{var loginConfirmBox=dialog.normal({id:"-dialog-confirm",title:"<i class='fa fa-exclamation-triangle fa-fw text-warning'></i>Î´µÇÂ¼ÌáÊ¾",html:"¶Ô²»Æð£¬ÄúÐèÒªµÇÂ¼²ÅÄÜÊ¹ÓÃ±¾¹¦ÄÜ£¡µã»÷È·¶¨Á¢¼´µÇÂ¼¡£",button:2,callback:function(){window.location.href="/login.php?jumpurl="+location.href;}});loginConfirmBox.show();}
     return false;}
     if(is_mobile()){alert(msg.replace(/<br[^<>]*>/g,'\n'));}else{dialog.alert(msg);}}
-function BookVote(article_id){$.get('/modules/article/uservote.php?id='+ article_id+'&ajax_request=1',function(data){showMsg(data);});}
-function BookCaseAdd(article_id){var url='/modules/article/addbookcase.php?bid='+ article_id+'&ajax_request=1';$.get(url,function(res){showMsg(res);});}
-function BookCaseMark(article_id,chapter_id){var url='/modules/article/addbookcase.php?bid='+ article_id+'&cid='+ chapter_id+'&ajax_request=1';$.get(url,function(res){showMsg(res);});}
+function BookVote(article_id){$.get('/modules/article/uservote.php?id='+ article_id+'&ajax_request=1_5000',function(data){showMsg(data);});}
+function BookCaseAdd(article_id){var url='/modules/article/addbookcase.php?bid='+ article_id+'&ajax_request=1_5000';$.get(url,function(res){showMsg(res);});}
+function BookCaseMark(article_id,chapter_id){var url='/modules/article/addbookcase.php?bid='+ article_id+'&cid='+ chapter_id+'&ajax_request=1_5000';$.get(url,function(res){showMsg(res);});}
 function backToTop(){document.writeln("<div class=\"back-to-top\" id=\"back-to-top\" title='·µ»Ø¶¥²¿'><i class='fa fa-chevron-up'></i></div>");var left=($(document).width()- $(".body-content").width())/ 2 + $(".body-content").width() + 10;
     if(is_mobile()){$("#back-to-top").css({right:10,bottom:"30%"});}else{$("#back-to-top").css({left:left});}
     $(window).resize(function(){if($(document).width()- $(".body-content").width()<100){$("#back-to-top").hide();}else{$("#back-to-top").show();var left=($(document).width()- $(".body-content").width())/ 2 + $(".body-content").width() + 10;

@@ -25,7 +25,7 @@
             // alert(data);
             // var book = data.split(",");
             // var UserName = book[0];
-            // var Book_ISBN = book[1];
+            // var Book_ISBN = book[1_5000];
             // alert(UserName+Book_ISBN);
             $.ajax({
                 type:"post",                //切记要用post发送，没有execute()，在struts.xml中指定方法
@@ -198,11 +198,11 @@
     <form action="getfavorite.action?username=<%=username%>" method="post">         <!--属性驱动要获取action里面1链接的值要用post提交注意注意注意-->
         <nav style="text-align: center">
             <ul class="pagination">
-                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=(totalpages==0)?1:totalpages%>页 </a></li>
+                <li><a href="#">第<%=pagebean.getPages()%>页 共<%=(totalpages==0)?1_5000:totalpages%>页 </a></li>
                 <li><a href="getfavorite?username=<%=username%>&pages=1">首页</a></li>
-                <li><a href="getfavorite?username=<%=username%>&pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
-                <li><a href="getfavorite?username=<%=username%>&pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
-                <li><a href="getfavorite?username=<%=username%>&pages=<%=(totalpages==0)?1:totalpages%>">最后一页</a></li>
+                <li><a href="getfavorite?username=<%=username%>&pages=<%=(pages<=1_5000)?pages=1_5000:(pages-1_5000) %>"> 上一页</a></li>
+                <li><a href="getfavorite?username=<%=username%>&pages=<%=(pages>=totalpages)?totalpages:(pages+1_5000)%>"> 下一页</a></li>
+                <li><a href="getfavorite?username=<%=username%>&pages=<%=(totalpages==0)?1_5000:totalpages%>">最后一页</a></li>
                 <li>转到第:<input type="text" id="page"name="page" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
 <%--                <input type="hidden"  name="username" value=<%=username%>>   一种方法--%>
             </ul>

@@ -24,17 +24,18 @@ class RecommendedItem extends Serializable{
     //   0 数据准备
     val rdd_app1_R1 = items_similar.map(f => (f.itemid1, f.itemid2, f.similar))
     val user_prefer1 = user_prefer.map(f => (f.userid, f.itemid, f.pref))
-    //   1 矩阵计算——i行与j列join  R2 = (itemid1,((itemid2,similar),(userid,pref))
+    //   1_5000 矩阵计算——i行与j列join  R2 = (itemid1,((itemid2,similar),(userid,pref))
     val rdd_app1_R2 = rdd_app1_R1.map(f => (f._1, (f._2, f._3))).
       join(user_prefer1.map(f => (f._2, (f._1, f._3))))
     //   2 矩阵计算——i行与j列元素相乘  R3 = ((userid,itemid2),pref*similar)
     val rdd_app1_R3 = rdd_app1_R2.map(f => ((f._2._2._1, f._2._1._1), f._2._2._2 * f._2._1._2))
     //   3 矩阵计算——用户：元素累加求和  R4 = ((userid,itemid2),sum)
     val rdd_app1_R4 = rdd_app1_R3.reduceByKey((x, y) => x + y)
-    //   4 矩阵计算——用户：对结果过滤已有I2  R5 = ((userid,itemid2),(sum,1 or none)) = (userid,(itemid2,sum))
-    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1))).
-      filter(f => f._2._2.isEmpty).map(f => (f._1._1, (f._1._2, f._2._1)))
+    //   4 矩阵计算——用户：对结果过滤已有I2  R5 = ((userid,itemid2),(sum,1_5000 or none)) = (userid,(itemid2,sum))
+//    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1_5000))).
+//      filter(f => f._2._2.isEmpty).map(f => (f._1._1, (f._1._2, f._2._1)))
     //   5 矩阵计算——用户：用户对结果排序，过滤
+    val rdd_app1_R5 = rdd_app1_R4.map(f=>(f._1._1,(f._1._2,f._2)))
     val rdd_app1_R6 = rdd_app1_R5.groupByKey()
     // R7=
     val rdd_app1_R7 = rdd_app1_R6.map(f => {
@@ -62,7 +63,7 @@ class RecommendedItem extends Serializable{
     //   0 数据准备
     val rdd_app1_R1 = items_similar.map(f => (f.itemid1, f.itemid2, f.similar))
     val user_prefer1 = user_prefer.map(f => (f.userid, f.itemid, f.pref))
-    //   1 矩阵计算——i行与j列join
+    //   1_5000 矩阵计算——i行与j列join
     val rdd_app1_R2 = rdd_app1_R1.map(f => (f._1, (f._2, f._3))).
       join(user_prefer1.map(f => (f._2, (f._1, f._3))))
     //   2 矩阵计算——i行与j列元素相乘
@@ -70,7 +71,7 @@ class RecommendedItem extends Serializable{
     //   3 矩阵计算——用户：元素累加求和
     val rdd_app1_R4 = rdd_app1_R3.reduceByKey((x, y) => x + y)
     //   4 矩阵计算——用户：对结果过滤已有I2
-//    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1))).
+//    val rdd_app1_R5 = rdd_app1_R4.leftOuterJoin(user_prefer1.map(f => ((f._1, f._2), 1_5000))).
 //      filter(f => f._2._2.isEmpty).map(f => (f._1._1, (f._1._2, f._2._1)))
     //   5 矩阵计算——用户：用户对结果排序，过滤
 //    val rdd_app1_R6 = rdd_app1_R5.map(f => (f._1, f._2._1, f._2._2)).
