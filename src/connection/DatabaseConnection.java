@@ -6,11 +6,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection implements Serializable {
-        private static final String driver = "com.mysql.jdbc.Driver";
-        private static final String url = "jdbc:mysql://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=false&";
+//        private static final String driver = "com.mysql.jdbc.Driver";
+        private static final String driver = "org.mariadb.jdbc.Driver";
+//        private static final String url = "jdbc:mysql://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=false&";
+        //mariadb数据库
+        private static final String url = "jdbc:mariadb://localhost:3306/book_recommendation?characterEncoding=utf8&useSSL=false&";
         private static final String user="linwei";
-        private static final String password ="123456";//window-computer
-//        private static final String password="Mysql#2018";//ubuntu-computer
+//        private static final String password ="123456";//window-computer
+        private static final String password="Mysql#2018";//ubuntu-computer
         private Connection conn=null;
         //构造方法连接数据库
         public DatabaseConnection(){
