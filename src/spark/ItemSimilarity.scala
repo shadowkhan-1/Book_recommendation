@@ -81,7 +81,7 @@ object ItemSimilarity {
     // 0 数据做准备
     val user_rdd1 = user_rdd.map(f => (f.userid, f.itemid, f.pref))
     val user_rdd2 = user_rdd1.map(f => (f._1, f._2))
-    // 1_5000 (用户：物品) 笛卡尔积 (用户：物品) => 物品:物品组合
+    // 1(用户：物品) 笛卡尔积 (用户：物品) => 物品:物品组合
     val user_rdd3 = user_rdd2.join(user_rdd2)
     val user_rdd4 = user_rdd3.map(f => (f._2, 1))
     // 2 物品:物品:频次
@@ -117,7 +117,7 @@ object ItemSimilarity {
     // 0 数据做准备
     val user_rdd1 = user_rdd.map(f => (f.userid, f.itemid, f.pref))
     val user_rdd2 = user_rdd1.map(f => (f._1, (f._2, f._3)))
-    // 1_5000 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
+    // 1 (用户,物品,评分) 笛卡尔积 (用户,物品,评分) => （物品1,物品2,评分1,评分2）组合
     val user_rdd3 = user_rdd2.join(user_rdd2)
     val user_rdd4 = user_rdd3.map(f => ((f._2._1._1, f._2._2._1), (f._2._1._2, f._2._2._2)))
     // 2 （物品1,物品2,评分1,评分2）组合 => （物品1,物品2,评分1*评分2） 组合 并累加

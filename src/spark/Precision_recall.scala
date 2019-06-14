@@ -8,9 +8,9 @@ object Precision_recall {
   val conf = new SparkConf().setAppName("test").setMaster("local")
   val sc = new SparkContext(conf)
   Logger.getRootLogger.setLevel(Level.WARN)
-  val test_data = sc.textFile("./input/test/1_5000")
+  val test_data = sc.textFile("./input/test/1_30000_15000")
     .map{x=>val line=x.split(";");(line(0),line(1))}
-  val data = sc.textFile("./output/result_k_5/part-00000")
+  val data = sc.textFile("./output/cosine_k_3_30000/part-00000")
     .map{x=>val line=x.split(",");(line(0),line(1))}
     val test_data_join = test_data.join(data)
   val result = test_data_join.filter(x=>x._2._1==x._2._2).map(x=>(x._1,1)).reduceByKey(_+_).sortByKey()       //取出item相等的，即TP

@@ -15,8 +15,8 @@ object ItemCF {
 //    var conn:Connection = null
 //    var pts:PreparedStatement = null
     //1_5000 读取样本数据
-    val data_path = "./input/train/1_20000"
-    val output = "./output/result_k_5"
+    val data_path = "./input/test/1_30000_15000"
+    val output = "./output/cosine_k_3_30000"
 //    val output1 = "./output/similarity/"
 //
 //    //去除首行
@@ -28,9 +28,9 @@ object ItemCF {
     val userdata = data.map(_.split(";")).map(f => (ItemPref(f(0), f(1), f(2).toDouble))).cache()
     //2 建立模型
     val mysimil = new ItemSimilarity()
-    val simil_rdd1 = mysimil.Similarity(userdata, "cooccurrence")
+    val simil_rdd1 = mysimil.Similarity(userdata, "cosine")
     val recommd = new RecommendedItem
-    val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata,1)
+    val recommd_rdd1 = recommd.Recommend(simil_rdd1, userdata,3)
 //  打印结果
     println(s"物品相似度矩阵数量: ${simil_rdd1.count()}")
 //    simil_rdd1.collect().foreach { ItemSimi =>
