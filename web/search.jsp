@@ -146,7 +146,7 @@
                 else {
                 for(BX_Books books:list){
                     String author_href = "https://www.baidu.com/s?wd="+books.getBook_Author().replace(" ","+")+"&ie=UTF-8";
-                    String key_word = "<font color='red'>"+search_name+"<font>";
+                    String key_word = "<font color='red'>"+search_name+"</font>";
                     String title_href = "https://www.baidu.com/s?wd="+books.getBook_Title().replace(" ","+")+"&ie=UTF-8";
                     String big_image_href = books.getImage_URL_L();
             %>

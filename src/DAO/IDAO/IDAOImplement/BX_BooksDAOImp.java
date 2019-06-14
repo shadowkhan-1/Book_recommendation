@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 //select BX_Books.ISBN,grade from BX_Books left join (select ISBN,avg(Book_Rating) as grade from BX_Book_Ratings group by ISBN order by grade desc) as t1 on BX_Books.ISBN=t1.ISBN limit 10;
 
 public class BX_BooksDAOImp implements IBX_BooksDAO {
@@ -90,7 +90,6 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
                 vo.setImage_URL_S(rs.getString(6));
                 vo.setImage_URL_M(rs.getString(7));
                 vo.setImage_URL_L(rs.getString(8));
-                vo.setBook_Count(rs.getInt(9));
                 all.add(vo);
             }
         }
@@ -124,7 +123,7 @@ public class BX_BooksDAOImp implements IBX_BooksDAO {
             vo.setImage_URL_M(rs.getString(6));
             vo.setImage_URL_L(rs.getString(7));
             BigDecimal b = new BigDecimal(rs.getDouble(8)); //四舍五入法
-            vo.setGrade(b.setScale(1_50000,BigDecimal.ROUND_HALF_UP).doubleValue());
+            vo.setGrade(b.setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue());
             all.add(vo);
         }
         return all;
