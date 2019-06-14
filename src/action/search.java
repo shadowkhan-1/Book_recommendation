@@ -49,10 +49,10 @@ public class search extends ActionSupport {
         ActionContext context= ActionContext.getContext();
 
         List<BX_Books> list = ServiceFactory.getBX_BooksServiceInterface().findbykey(getPage(),this.search_column,getSearch_name());
-        Integer totalbook = 0;
-        for(BX_Books book:list){
-              totalbook+=book.getBook_Count();
-        }
+        Integer totalbook = list.size();
+//        for(BX_Books book:list){
+//              totalbook+=book.getBook_Count();
+//        }
         pagebean.setSearch_book(list);
 //        for(BX_Books book:list){
 //            System.out.println(book.getISBN());

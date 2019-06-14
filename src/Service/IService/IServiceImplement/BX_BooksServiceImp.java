@@ -4,7 +4,6 @@ import Factory.DAOFactory;
 import Service.IService.IBX_BooksService;
 import connection.DatabaseConnection;
 import org.apache.derby.jdbc.EmbeddedXADataSource;
-import scala.util.parsing.combinator.testing.Str;
 import table.BX_Books;
 
 import java.util.List;

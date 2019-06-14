@@ -146,6 +146,7 @@
                 else {
                 for(BX_Books books:list){
                     String author_href = "https://www.baidu.com/s?wd="+books.getBook_Author().replace(" ","+")+"&ie=UTF-8";
+                    String key_word = "<font color='red'>"+search_name+"<font>";
                     String title_href = "https://www.baidu.com/s?wd="+books.getBook_Title().replace(" ","+")+"&ie=UTF-8";
                     String big_image_href = books.getImage_URL_L();
             %>
@@ -156,11 +157,11 @@
                     <a href=<%=big_image_href%> target="_blank"><img src=<%=books.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>
                 </div>
                 <div class="thumbnail book_info_right">
-                    <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title()%></a></h4>
+                    <h4 class="book_info"><a href=<%=title_href%> target="_blank"><%=books.getBook_Title().replaceAll("(?i)"+search_name,key_word)%></a></h4>
                     <p style="color:#28ff46;">
-                        <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=books.getBook_Author()%><br></a></span>
-                        <span class="book_info">出版社：<%=books.getPublisher()%></span><br>
-                        出版日期:<%=books.getYear_Of_Publication()%>
+                        <span class="book_info">作者：<a href=<%=author_href%> target="_blank"><%=books.getBook_Author().replaceAll("(?i)"+search_name,key_word)%><br></a></span>
+                        <span class="book_info">出版社：<%=books.getPublisher().replaceAll("(?i)"+search_name,key_word)%></span><br>
+                        出版日期:<%=books.getYear_Of_Publication().toString().replace(search_name,key_word)%>
                     </p>
                     <a name="favorite" href="javascript:;" data-username="<%=userbean.getUsername()%>" onclick="sendFavorite(<%=books.getISBN()%>)"><span class="glyphicon glyphicon-heart"></span></a>
                 </div>
@@ -176,10 +177,10 @@
 <form action="search.action?userbean=<%=userbean%>&search_name=<%=search_name%>" method="post">
     <nav style="text-align: center">
         <ul class="pagination">
-            <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
+            <li><a href="#">第<%=pagebean.getPages()%>页 共<%=(totalpages==0)?1:totalpages%>页 </a></li>
             <li><a href="search?pages=1&search_name=<%=search_name%>">首页</a></li>
-            <li><a href="search?pages=<%=(pages<=1_5000)?pages=1_5000:(pages-1_5000) %>&search_name=<%=search_name%>"> 上一页</a></li>
-            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1_5000)%>&search_name=<%=search_name%>"> 下一页</a></li>
+            <li><a href="search?pages=<%=(pages<=1)?pages=1:(pages-1) %>&search_name=<%=search_name%>"> 上一页</a></li>
+            <li><a href="search?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>&search_name=<%=search_name%>"> 下一页</a></li>
             <li><a href="search?pages=<%=totalpages%>&search_name=<%=search_name%>">最后一页</a></li>
             <li>转到第:<input type="text" id="page"name="page" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
         </ul>

@@ -202,7 +202,7 @@
                 for(int i=0;i<book_list.size();i++){
                     String title_href = "https://www.baidu.com/s?wd="+book_list.get(i).getBook_Title().replace(" ","+")+"&ie=UTF-8";
              %>
-                    <li class="list-group-item"><i class="topNum"><%=i+1_5000%></i><a href=<%=title_href%> target="_blank" title=<%=book_list.get(i).getBook_Title()%>><%=book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=book_list.get(i).getBook_Count()%></span></li>
+                    <li class="list-group-item"><i class="topNum"><%=i+1%></i><a href=<%=title_href%> target="_blank" title=<%=book_list.get(i).getBook_Title()%>><%=book_list.get(i).getBook_Title()%></a><small class="text-muted">/<%=book_list.get(i).getBook_Author()%></small><span class="pull-right text-muted"><%=book_list.get(i).getBook_Count()%></span></li>
                 <%}%>
                 </ul>
             </div>
@@ -247,12 +247,12 @@
         </div>
         <%
             List<BX_Books> recommend = pagebean.getRecommend();
-            for(BX_Books recm:recommend){
+            for(BX_Books recm:recommend.subList(0,5)){
                 String author_href = "https://www.baidu.com/s?wd="+recm.getBook_Author().replace(" ","+")+"&ie=UTF-8";
                 String title_href = "https://www.baidu.com/s?wd="+recm.getBook_Title().replace(" ","+")+"&ie=UTF-8";
                 String big_image_href = recm.getImage_URL_L();
         %>
-        <div class="col-md-5">
+        <div class="col-md-8">
             <%--        <div class="thumbnail">--%>
             <div class="thumbnail book_info_left">
                 <a href=<%=big_image_href%> target="_blank"><img src=<%=recm.getImage_URL_M()%> alt="无图"  class="img-responsive" style="width:140px;height:160px"></a>
@@ -294,8 +294,8 @@
     <ul class="pagination">
         <li><a href="#">第<%=pagebean.getPages()%>页 共<%=totalpages%>页 </a></li>
         <li><a href="getbook?pages=1">首页</a></li>
-        <li><a href="getbook?pages=<%=(pages<=1_5000)?pages=1_5000:(pages-1_5000) %>"> 上一页</a></li>
-        <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1_5000)%>"> 下一页</a></li>
+        <li><a href="getbook?pages=<%=(pages<=1)?pages=1:(pages-1) %>"> 上一页</a></li>
+        <li><a href="getbook?pages=<%=(pages>=totalpages)?totalpages:(pages+1)%>"> 下一页</a></li>
         <li><a href="getbook?pages=<%=totalpages%>">最后一页</a></li>
         <li>转到第:<input type="text" id="pages"name="pages" size="8">页<input type="submit" class="btn btn-default" value="跳转" name="submit"></li>
     </ul>
